@@ -1,0 +1,5 @@
+/* Seahawk AI — webfonts
+   Inter (primary sans), Lora (editorial serif), Caveat (accent script).
+   All three are the ORIGINAL specified faces, free on Google Fonts — no substitution.
+   Loaded from the Google Fonts CDN; swap to self-hosted @font-face if offline delivery is needed. */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');

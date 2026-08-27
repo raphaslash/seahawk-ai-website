@@ -1,0 +1,8 @@
+/* Seahawk AI — Radius tokens */
+:root {
+  --radius-card:   12px;          /* cards, modals, tiles */
+  --radius-input:  4px;           /* outlined field rows */
+  --radius-pill:   50px;          /* ALL buttons — full pill, universal */
+  --radius-circle: 50%;           /* circular icons, avatars, FAB */
+  --radius-tab:    12px 12px 0 0; /* bottom-anchored feedback tab */
+}

@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+._*
+
+# Editor / tooling
+.vscode/
+.idea/
+*.swp
+
+# Claude Design local capture
+.thumbnail
+
+# Logs
+*.log

@@ -1,0 +1,25 @@
+/* Seahawk AI — Spacing tokens
+   Rem-based semantic scale (source anchors 1rem=10px). Values given in px for portability.
+   1.6rem / 16px is the universal rhythm constant. */
+:root {
+  --space-1: 4px;   /* tightest inline padding */
+  --space-2: 8px;   /* small gap, button vertical padding */
+  --space-3: 16px;  /* DEFAULT — card padding, outer gutter (xs) */
+  --space-4: 24px;  /* section inner spacing, gutter (md) */
+  --space-5: 32px;  /* major between-section spacing */
+  --space-6: 40px;  /* large gaps, gutter (lg) */
+  --space-7: 48px;  /* section-to-section */
+  --space-8: 56px;  /* very large breathing */
+  --space-9: 64px;  /* widest section padding */
+
+  /* Outer gutters (responsive) */
+  --gutter:        16px;  /* mobile */
+  --gutter-md:     24px;  /* tablet */
+  --gutter-lg:     40px;  /* desktop */
+
+  /* Container widths */
+  --col-sm: 343px;
+  --col-md: 500px;
+  --col-lg: 720px;
+  --col-xl: 1440px;
+}

@@ -1,0 +1,67 @@
+/* Seahawk AI — Color tokens
+   Five-tier green brand system over a warm cream canvas. Brass is reserved for
+   ceremony/accent moments only. Body ink never goes pure black. */
+:root {
+  /* ---- Base: Greens (five calibrated tiers) ---- */
+  --green-primary: #1e6e57;   /* headings, dominant single-color brand signal */
+  --green-accent:  #17845c;   /* primary filled CTA + signature fills */
+  --green-deep:    #17332c;   /* deep bands, footers, dark ceremony surfaces */
+  --green-uplift:  #33574c;   /* secondary mid-dark green, decorative only */
+  --green-light:   #d6e8e1;   /* pale mint wash, valid-state tints */
+  --green-consent: #008248;   /* brighter consent/affirmative variant */
+
+  /* ---- Base: Brass (ceremony accent — sparing use) ---- */
+  --brass:          #c39a5b;
+  --brass-light:    #ddc29b;
+  --brass-lightest: #faf5ec;
+
+  /* ---- Base: Surfaces (warm-neutral, never cold white canvas) ---- */
+  --white:        #ffffff;
+  --ivory:        #fbf8f2;    /* warm off-white — card/panel surfaces (never cold white) */
+  --neutral-cool: #f9f9f9;    /* dropdowns, quiet utility containers */
+  --neutral-warm: #eaddc6;    /* PRIMARY page canvas — warm cream, leans toward brass-light */
+  --ceramic:      #ebe9e6;    /* zone separators, softer section wash */
+  --black:        #000000;    /* high-contrast conversion strips only */
+
+  /* ---- Base: Ink & on-dark text ---- */
+  --ink:           rgba(0,0,0,0.87);   /* primary text on light — warm, not pure black */
+  --ink-soft:      rgba(0,0,0,0.58);   /* secondary / metadata on light */
+  --on-dark:       rgba(255,255,255,1);
+  --on-dark-soft:  rgba(255,255,255,0.70);
+  --slate:         #34433d;            /* dusty membership/reading green */
+  --input-border:  #d6dbde;
+  --hairline:      #e7e7e7;
+
+  /* ---- Base: Semantic ---- */
+  --red:    #c0392b;   /* error / destructive */
+  --yellow: #f5b301;   /* warning */
+  --green-light-tint: hsl(160 32% 87% / 33%);  /* valid-field tint */
+  --red-tint:         hsl(6 63% 47% / 5%);     /* invalid-field tint */
+
+  /* ---- Alpha ladders (overlays / secondary text) ---- */
+  --black-06: rgba(0,0,0,0.06); --black-12: rgba(0,0,0,0.12); --black-24: rgba(0,0,0,0.24);
+  --black-38: rgba(0,0,0,0.38); --black-58: rgba(0,0,0,0.58); --black-87: rgba(0,0,0,0.87);
+  --white-10: rgba(255,255,255,0.10); --white-24: rgba(255,255,255,0.24);
+  --white-40: rgba(255,255,255,0.40); --white-70: rgba(255,255,255,0.70); --white-90: rgba(255,255,255,0.90);
+
+  /* ===== Semantic aliases (use these in components) ===== */
+  --surface-page:       var(--neutral-warm);
+  --surface-page-alt:   var(--ceramic);
+  --surface-card:       var(--ivory);
+  --surface-cool:       var(--neutral-cool);
+  --surface-deep:       var(--green-deep);
+  --surface-brass-wash: var(--brass-lightest);
+
+  --text-heading:       var(--green-primary);
+  --text-body:          var(--ink);
+  --text-muted:         var(--ink-soft);
+  --text-on-dark:       var(--on-dark);
+  --text-on-dark-muted: var(--on-dark-soft);
+
+  --cta-fill:      var(--green-accent);
+  --cta-text:      var(--white);
+  --accent-ceremony: var(--brass);
+
+  --border-subtle: var(--input-border);
+  --border-hairline: var(--hairline);
+}

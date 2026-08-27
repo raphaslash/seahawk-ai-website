@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/colors.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/typography.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/radii.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/shadows.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/tokens/motion.css">
+<link rel="stylesheet" href="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/styles.css">
+<script src="_ds/seahawk-ai-design-system-2e2732d9-88ae-4bd1-86df-b0d5e9075014/_ds_bundle.js"></script>
+<script>
+(function () {
+  var ro = null;
+  function sync() {
+    var h = document.querySelector('header');
+    if (!h) return requestAnimationFrame(sync);
+    document.documentElement.style.setProperty('--hdr-h', h.offsetHeight + 'px');
+    if (!ro) { ro = new ResizeObserver(sync); ro.observe(h); }
+  }
+  requestAnimationFrame(sync);
+  addEventListener('resize', sync);
+})();
+</script>
+<style>
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--neutral-warm); color: var(--ink); font-family: var(--font-sans); letter-spacing: var(--track-tight); text-wrap: pretty; -webkit-font-smoothing: antialiased; }
+a { color: var(--green-accent); text-decoration: none; }
+a:hover { color: var(--green-primary); }
+@keyframes sh-float { 0%, 100% { transform: translateY(-10px); } 50% { transform: translateY(10px); } }
+@keyframes sh-spin { to { transform: rotate(360deg); } }
+@keyframes sh-orbA { from { transform: rotateX(68deg) rotateZ(0deg); } to { transform: rotateX(68deg) rotateZ(-360deg); } }
+@keyframes sh-faceA { from { transform: rotateZ(0deg) rotateX(-68deg); } to { transform: rotateZ(360deg) rotateX(-68deg); } }
+@keyframes sh-orbB { from { transform: rotateX(56deg) rotateZ(0deg); } to { transform: rotateX(56deg) rotateZ(360deg); } }
+@keyframes sh-faceB { from { transform: rotateZ(0deg) rotateX(-56deg); } to { transform: rotateZ(-360deg) rotateX(-56deg); } }
+@keyframes sh-breathe { 0%, 100% { opacity: 0.35; transform: scale(1); } 50% { opacity: 0.62; transform: scale(1.06); } }
+@keyframes sh-fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes sh-dash { to { stroke-dashoffset: -220; } }
+[data-reveal] { transition: opacity 0.8s cubic-bezier(.25,.46,.45,.94), transform 0.8s cubic-bezier(.25,.46,.45,.94); }
+[data-reveal].sh-out { opacity: 0; transform: translateY(26px); }
+[data-nav] { position: relative; background: transparent; border: 0; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: rgba(255,255,255,0.62); padding: 9px 16px; border-radius: 50px; transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+[data-nav]:hover { color: #fff; background: rgba(255,255,255,0.09); }
+[data-nav]:active { transform: scale(0.95); }
+[data-nav][data-active="1"] { color: #17332c; background: var(--green-light); }
+[data-pairstart="1"] { grid-column: 1; }
+[data-lift] { transition: transform 0.28s cubic-bezier(.25,.46,.45,.94), box-shadow 0.28s ease; }
+[data-lift]:hover { transform: translateY(-6px); }
+[data-chip] { background: transparent; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--ink-soft); border: 1px solid var(--input-border); padding: 8px 16px; border-radius: 50px; transition: all 0.2s ease; }
+[data-chip]:hover { color: var(--green-primary); border-color: var(--green-accent); }
+[data-chip]:active { transform: scale(0.95); }
+[data-chip][data-active="1"] { background: var(--green-deep); border-color: var(--green-deep); color: #fff; }
+[data-chip][data-track="competition"][data-active="1"] { background: var(--brass); border-color: var(--brass); color: var(--green-deep); }
+[data-copy] { background: transparent; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 700; letter-spacing: 0.05em; color: var(--green-accent); border: 1px solid var(--green-accent); padding: 7px 15px; border-radius: 50px; transition: all 0.2s ease; }
+[data-copy]:hover { background: var(--green-accent); color: #fff; }
+[data-copy]:active { transform: scale(0.95); }
+[data-copy][data-done="1"] { background: var(--green-accent); color: #fff; border-color: var(--green-accent); }
+pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+
+/* ---- Large monitors: widen the content column so the page isn't a narrow strip ---- */
+@media (min-width: 1500px) {
+  [data-m="wrap"] { max-width: 1440px !important; }
+}
+
+/* ---- Mobile only. Desktop layout above 900px is untouched. ---- */
+@media (max-width: 900px) {
+  html, body { overflow-x: hidden; }
+
+  /* header: one compact row — mark + wordmark, nav as a scroll rail beneath */
+  header > div { flex-direction: column !important; align-items: stretch !important; gap: 2px !important; padding: 6px 14px 7px !important; }
+  header > div > button img { width: 28px !important; height: 28px !important; }
+  header > div > button { padding: 2px 6px 2px 2px !important; gap: 8px !important; }
+  header > div > button span span { font-size: 12.5px !important; }
+  header nav { margin-left: 0 !important; flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  header nav::-webkit-scrollbar { display: none; }
+  header nav [data-nav] { flex: 0 0 auto; padding: 8px 12px !important; font-size: 13px !important; }
+  header nav [data-nav]:last-child { margin-left: 2px !important; }
+
+  /* sticky filter bars sit below the taller mobile header */
+  [data-m="sticky-bar"] { top: var(--hdr-h, 88px) !important; }
+  [data-m="sticky-bar"] > div { padding: 12px 18px !important; }
+
+  /* section rhythm */
+  main section, footer { padding-left: 18px !important; padding-right: 18px !important; }
+  main section { padding-top: 56px !important; padding-bottom: 60px !important; }
+
+  /* every multi-column grid stacks */
+  [style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; gap: 24px !important; }
+
+  /* hero: mark below the copy, smaller */
+  [data-m="hero-visual"] { min-height: 0 !important; }
+  [data-m="hero-visual"] > div { max-width: 340px !important; }
+
+  /* meeting cards stack; the date panel becomes a header strip */
+  [data-m="meet-panel"] { padding: 20px 22px !important; flex-direction: row !important; align-items: flex-end !important; gap: 18px; flex-wrap: wrap; }
+  [data-m="meet-panel"] > div:last-child { margin-top: 0 !important; flex-direction: row !important; align-items: center !important; flex-wrap: wrap; }
+  [data-m="meet-body"] { padding: 4px 20px 12px !important; }
+  [data-m="meet-body"] h3 { font-size: 20px !important; }
+  [data-m="meet-body"] p { font-size: 15.5px !important; }
+
+  /* roomier cards get tighter padding */
+  [data-m="pad-lg"] { padding: 28px 22px 30px !important; }
+
+
+  /* decorative line-art never causes sideways scroll */
+  main section { overflow: hidden; }
+
+  footer > div > div { gap: 28px !important; }
+}
+</style>
+</helmet>
+
+<div style="min-height:100vh;display:flex;flex-direction:column;background:var(--neutral-warm)">
+
+  <header style="position:sticky;top:0;z-index:50;background:var(--green-deep);box-shadow:0 1px 0 rgba(255,255,255,0.08), 0 6px 24px rgba(0,0,0,0.18)">
+    <div data-m="wrap" style="max-width:1240px;margin:0 auto;padding:12px 28px;display:flex;align-items:center;gap:28px">
+      <button data-nav="" onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;padding:6px 10px 6px 6px;background:transparent;border:0;cursor:pointer">
+        <img src="assets/seahawk-hawk.png" alt="Seahawk AI" style="width:40px;height:40px;object-fit:contain;flex-shrink:0">
+        <span style="display:flex;flex-direction:column;align-items:flex-start;line-height:1.05">
+          <span style="font-family:var(--font-sans);font-size:15px;font-weight:800;letter-spacing:0.16em;color:#fff">SEAHAWK</span>
+          <span style="font-family:var(--font-serif);font-size:15px;font-style:italic;letter-spacing:0.04em;color:var(--brass-light)">AI Club</span>
+        </span>
+      </button>
+      <nav style="margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap;justify-content:flex-end">
+        <button data-nav="" data-active="{{ atHome }}" onClick="{{ goHome }}">Home</button>
+        <button data-nav="" data-active="{{ atFounders }}" onClick="{{ goFounders }}">Founders</button>
+        <button data-nav="" data-active="{{ atItinerary }}" onClick="{{ goItinerary }}">Itinerary</button>
+        <button data-nav="" data-active="{{ atResources }}" onClick="{{ goResources }}">Resources</button>
+        <button data-nav="" data-active="{{ atProducts }}" onClick="{{ goProducts }}">Products</button>
+        <button data-nav="" data-active="{{ atJoin }}" onClick="{{ goJoin }}" style="background:var(--green-accent);color:#fff;margin-left:8px">Join</button>
+      </nav>
+    </div>
+  </header>
+
+  <main style="flex:1">
+
+  <sc-if value="{{ atHome }}" hint-placeholder-val="{{ true }}">
+  <div data-screen-label="Home" style="animation:sh-fade 0.5s ease both">
+
+    <section style="position:relative;overflow:hidden;background:var(--green-deep);color:#fff;padding:96px 28px 104px">
+      <div style="position:absolute;top:-40px;left:-60px;color:var(--green-light)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="wing" size="480" opacity="0.10" stroke-width="1.2" hint-size="480px,300px"></x-import>
+      </div>
+      <div style="position:absolute;bottom:-70px;right:34%;color:var(--brass)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="flight" size="360" opacity="0.16" stroke-width="1.2" hint-size="360px,240px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,0.85fr);gap:56px;align-items:center">
+        <div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:22px">
+            <span style="width:34px;height:1px;background:var(--brass)"></span>
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Student-run · 2026–2027 season</x-import>
+          </div>
+          <h1 style="margin:0;font-family:var(--font-serif);font-size:clamp(46px,6vw,86px);font-weight:600;line-height:1.03;letter-spacing:var(--track-display);color:#fff">Every industry is being<br>rewritten by AI.</h1>
+          <p style="margin:26px 0 0;max-width:44ch;font-size:20px;line-height:1.65;color:var(--on-dark-soft)">We're not here to lose to it. Seahawk AI is a high school club where students learn to <span style="color:#fff;font-weight:600">use, build with, and control</span> the tools that are reshaping everything else.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:38px">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="filled" size="lg" onClick="{{ goItinerary }}" hint-size="auto,50px">See the itinerary</x-import>
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outlineOnDark" size="lg" onClick="{{ goJoin }}" hint-size="auto,50px">Join the club</x-import>
+          </div>
+          <p style="margin:30px 0 0;font-family:var(--font-script);font-size:24px;color:var(--brass-light)">— every other Monday, in the lecture hall</p>
+        </div>
+        <div data-m="hero-visual" style="position:relative;display:grid;place-items:center;min-height:520px">
+          <div style="position:relative;width:100%;max-width:560px;aspect-ratio:1;display:grid;place-items:center;perspective:1150px;perspective-origin:50% 50%;transform-style:preserve-3d">
+            <div style="position:absolute;width:52%;aspect-ratio:1;border-radius:50%;background:var(--green-accent);filter:blur(58px);animation:sh-breathe 9s ease-in-out infinite"></div>
+            <div style="position:absolute;inset:0;border-radius:50%;border:1px dashed rgba(255,255,255,0.15);transform:rotateX(68deg)"></div>
+            <div style="position:absolute;inset:14%;border-radius:50%;border:1px solid rgba(195,154,91,0.26);transform:rotateX(56deg)"></div>
+            <img src="assets/seahawk-hawk.png" alt="Seahawk AI hawk mark" style="position:relative;width:71%;max-width:400px;filter:drop-shadow(0 24px 46px rgba(0,0,0,0.5))">
+
+            <div style="position:absolute;inset:0;animation:sh-orbA 52s linear infinite;transform-style:preserve-3d;pointer-events:none">
+              <div style="position:absolute;inset:0;transform:rotateZ(0deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:44px;height:44px;margin:-22px 0 0 -22px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceA 52s linear infinite;animation-delay:0s">
+                    <img src="assets/tools/claude.png" alt="Claude" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.45))">
+                  </div>
+                </div>
+              </div>
+              <div style="position:absolute;inset:0;transform:rotateZ(120deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:42px;height:42px;margin:-21px 0 0 -21px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceA 52s linear infinite;animation-delay:-34.67s">
+                    <img src="assets/tools/openai.png" alt="ChatGPT" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.45))">
+                  </div>
+                </div>
+              </div>
+              <div style="position:absolute;inset:0;transform:rotateZ(240deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:43px;height:43px;margin:-21.5px 0 0 -21.5px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceA 52s linear infinite;animation-delay:-17.33s">
+                    <img src="assets/tools/gemini.png" alt="Gemini" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.45))">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style="position:absolute;inset:14%;animation:sh-orbB 38s linear infinite;transform-style:preserve-3d;pointer-events:none">
+              <div style="position:absolute;inset:0;transform:rotateZ(58deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceB 38s linear infinite;animation-delay:-6.12s">
+                    <img src="assets/tools/copilot.png" alt="Microsoft Copilot" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))">
+                  </div>
+                </div>
+              </div>
+              <div style="position:absolute;inset:0;transform:rotateZ(178deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:25px;height:25px;margin:-12.5px 0 0 -12.5px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceB 38s linear infinite;animation-delay:-18.79s">
+                    <img src="assets/tools/grok-w.png" alt="Grok" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))">
+                  </div>
+                </div>
+              </div>
+              <div style="position:absolute;inset:0;transform:rotateZ(298deg);transform-style:preserve-3d">
+                <div style="position:absolute;top:0;left:50%;width:26px;height:26px;margin:-13px 0 0 -13px;transform-style:preserve-3d">
+                  <div style="width:100%;height:100%;animation:sh-faceB 38s linear infinite;animation-delay:-31.45s">
+                    <img src="assets/tools/deepseek.png" alt="DeepSeek" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4))">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--ceramic);border-bottom:1px solid var(--hairline)">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;padding:34px 28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px">
+        <div data-reveal="" style="transition-delay:0ms">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Stat" value="{{ nextShort }}" label="next meeting" sub="{{ nextSub }}" hint-size="auto,96px"></x-import>
+        </div>
+        <div data-reveal="" style="transition-delay:80ms">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Stat" value="3:05" label="every other Monday" sub="In the lecture hall" hint-size="auto,96px"></x-import>
+        </div>
+        <div data-reveal="" style="transition-delay:160ms">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Stat" value="0" label="experience required" sub="All grades welcome" hint-size="auto,96px"></x-import>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative;overflow:hidden;padding:104px 28px">
+      <div style="position:absolute;top:40px;right:-30px;color:var(--green-uplift)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="branch" size="300" opacity="0.22" stroke-width="1.4" hint-size="300px,300px"></x-import>
+      </div>
+      <div style="position:relative;max-width:1000px;margin:0 auto;text-align:center">
+        <div data-reveal="">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="accent" hint-size="auto,18px">Our mission</x-import>
+        </div>
+        <h2 data-reveal="" style="margin:20px 0 0;transition-delay:60ms;font-family:var(--font-serif);font-size:clamp(32px,4vw,52px);font-weight:500;line-height:1.18;letter-spacing:var(--track-display);color:var(--green-primary)">The students who learn to steer AI won't be the ones replaced by it.</h2>
+        <p data-reveal="" style="margin:28px auto 0;transition-delay:120ms;max-width:66ch;font-size:19px;line-height:1.8;color:var(--ink)">High school is where that head start gets built. Seahawk AI exists so students at every level — coders and non-coders alike — get real hands on real tools: prompting, generating, designing, automating, and building things people actually use. We learn out loud, argue about the hard parts, and leave every meeting having made something.</p>
+        <div data-reveal="" style="margin-top:44px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;transition-delay:180ms">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Hands-on every meeting</x-import>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="accent" hint-size="auto,26px">No experience needed</x-import>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Demo Day in June</x-import>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--white)">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;padding:88px 28px">
+        <div data-reveal="" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:44px">
+          <div>
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="muted" hint-size="auto,18px">What a meeting looks like</x-import>
+            <h2 style="margin:14px 0 0;font-family:var(--font-serif);font-size:40px;font-weight:500;letter-spacing:var(--track-display);color:var(--green-primary)">Three things we do</h2>
+          </div>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outline" size="md" onClick="{{ goItinerary }}" hint-size="auto,44px">Full schedule</x-import>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+          <div data-reveal="" data-lift="" style="transition-delay:0ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px 36px;box-shadow:var(--shadow-card);border-top:3px solid var(--green-accent);display:flex;flex-direction:column">
+            <div style="font-family:var(--font-serif);font-size:34px;color:var(--green-light);line-height:1">01</div>
+            <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Recent news</h3>
+            <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--ink-soft)">Every other meeting opens with what actually happened: new models and which one is currently strongest, new gadgets and hardware, and whatever drama or world news the industry set off.</p>
+            <div style="margin-top:auto;display:flex;align-items:center;gap:10px">
+              <img src="assets/tools/grok-w.png" alt="" style="width:24px;height:24px;object-fit:contain;filter:invert(1) brightness(0.35)">
+              <span style="font-size:13px;font-weight:600;color:var(--ink-soft)">Roughly 10 minutes</span>
+            </div>
+          </div>
+          <div data-reveal="" data-lift="" style="transition-delay:80ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px 36px;box-shadow:var(--shadow-card);border-top:3px solid var(--brass);display:flex;flex-direction:column">
+            <div style="font-family:var(--font-serif);font-size:34px;color:var(--brass-light);line-height:1">02</div>
+            <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Explore one tool</h3>
+            <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--ink-soft)">One tool or one capability, hands-on — Claude chat, Claude for design, Google NotebookLM, image generation, or building a whole website from a description.</p>
+            <div style="margin-top:auto;display:flex;align-items:center;gap:12px">
+              <img src="assets/tools/claude.png" alt="Claude" style="width:26px;height:26px;object-fit:contain">
+              <img src="assets/tools/openai.png" alt="ChatGPT" style="width:24px;height:24px;object-fit:contain;filter:invert(1) brightness(0.3)">
+              <img src="assets/tools/gemini.png" alt="Gemini" style="width:24px;height:24px;object-fit:contain">
+              <img src="assets/tools/copilot.png" alt="Copilot" style="width:24px;height:24px;object-fit:contain">
+              <img src="assets/tools/deepseek.png" alt="DeepSeek" style="width:24px;height:24px;object-fit:contain">
+            </div>
+          </div>
+          <div data-reveal="" data-lift="" style="transition-delay:160ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px 36px;box-shadow:var(--shadow-card);border-top:3px solid var(--green-primary);display:flex;flex-direction:column">
+            <div style="font-family:var(--font-serif);font-size:34px;color:var(--green-light);line-height:1">03</div>
+            <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Prep for challenges</h3>
+            <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--ink-soft)">We close by working on real competitions — the Presidential AI Challenge and other national contests. Teams, deadlines, and something to submit with our school's name on it.</p>
+            <div style="margin-top:auto">
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Presidential AI Challenge</x-import>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="position:relative;overflow:hidden;background:var(--green-primary);color:#fff;padding:80px 28px">
+      <div style="position:absolute;left:44%;top:-20px;color:#fff">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="swoosh" size="420" opacity="0.14" stroke-width="1.4" hint-size="420px,220px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px">
+        <div>
+          <h2 style="margin:0;font-family:var(--font-serif);font-size:clamp(30px,3.4vw,44px);font-weight:500;letter-spacing:var(--track-display)">First meeting: Monday, September 14.</h2>
+          <p style="margin:12px 0 0;font-size:18px;color:var(--on-dark-soft)">Bring a personal laptop if possible. Bring a friend. That's the whole barrier to entry.</p>
+        </div>
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="inverted" size="lg" onClick="{{ goJoin }}" hint-size="auto,50px">Get on the list</x-import>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ atFounders }}">
+  <div data-screen-label="Founders" style="animation:sh-fade 0.5s ease both">
+
+    <section style="background:var(--green-deep);color:#fff;padding:70px 28px 60px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-40px;top:-40px;color:var(--green-light)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="feather" size="320" opacity="0.12" stroke-width="1.2" hint-size="320px,320px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">The founders</x-import>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,66px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Two students, one bet<br>on what comes next.</h1>
+      </div>
+    </section>
+
+    <section style="padding:76px 28px 90px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:60px;align-items:start">
+        <div data-reveal="">
+          <div style="background:var(--ivory);padding:16px 16px 0;border-radius:var(--radius-card);box-shadow:var(--shadow-card);border:1px solid var(--brass-light)">
+            <img src="assets/founders.jpg" alt="Raphael and Rayyan at the club fair with the Seahawk AI poster" style="width:100%;display:block;border-radius:8px;aspect-ratio:4/5;object-fit:cover;object-position:center 22%">
+            <div style="padding:16px 4px 18px;display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+              <span style="font-family:var(--font-script);font-size:25px;color:var(--green-primary)">Rapha (left) &amp; Rayyan</span>
+              <span style="font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-soft)">Club fair, 2025</span>
+            </div>
+          </div>
+          <div style="margin-top:22px">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="brass" title="★ Founded 2025" hint-size="100%,86px">Started with a poster board, a bag of candy, and a QR code. It worked.</x-import>
+          </div>
+        </div>
+        <div>
+          <p data-reveal="" style="margin:0;font-family:var(--font-serif);font-size:26px;line-height:1.55;color:var(--green-primary)">Raphael Osinovsky and Rayyan Rahman started Seahawk AI in 2025, because the thing everyone kept calling "the future" was already here — and nobody at school was teaching it.</p>
+          <p data-reveal="" style="margin:26px 0 0;transition-delay:60ms;font-size:18px;line-height:1.8;color:var(--ink)">They were both already using AI daily — for schoolwork, for side projects, for arguing about ideas at 1am — and both kept running into the same thing: most people either dismissed it entirely or used it as a homework machine. Almost nobody was learning to actually <strong>build</strong> with it.</p>
+          <p data-reveal="" style="margin:20px 0 0;transition-delay:100ms;font-size:18px;line-height:1.8;color:var(--ink)">So they made the club they wanted to join. Every other Monday, students show up and leave having made something real — an image, a video, a prompt library, an app. No lecture-and-leave. No prerequisites. Just a room full of people getting genuinely good at the most important tool of their lifetime.</p>
+          <div style="height:1px;background:var(--hairline);margin:38px 0"></div>
+          <div data-reveal="" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px">
+            <div data-lift="" style="background:var(--white);border-radius:var(--radius-card);padding:26px;box-shadow:var(--shadow-card)">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600">R</div>
+              <h3 style="margin:16px 0 4px;font-size:19px;font-weight:600;color:var(--green-primary)">Raphael Osinovsky</h3>
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass)">Co-founder</div>
+              <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:var(--ink-soft)">Runs the build sessions and the design side. Believes the fastest way to understand a tool is to make something ugly with it first.</p>
+            </div>
+            <div data-lift="" style="background:var(--white);border-radius:var(--radius-card);padding:26px;box-shadow:var(--shadow-card)">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600">R</div>
+              <h3 style="margin:16px 0 4px;font-size:19px;font-weight:600;color:var(--green-primary)">Rayyan Rahman</h3>
+              <div style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass)">Co-founder</div>
+              <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:var(--ink-soft)">Runs outreach and the debate nights. The one who insists we ask whether we <em>should</em> before we ask whether we <em>can</em>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section style="background:var(--white);padding:82px 28px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto">
+        <div data-reveal="" style="text-align:center;margin-bottom:44px">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="accent" hint-size="auto,18px">Why we exist</x-import>
+          <h2 style="margin:14px 0 0;font-family:var(--font-serif);font-size:40px;font-weight:500;letter-spacing:var(--track-display);color:var(--green-primary)">Purpose, mission, and the part people skip</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px">
+          <div data-reveal="" data-lift="" style="background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card)">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Purpose</x-import>
+            <h3 style="margin:18px 0 10px;font-family:var(--font-serif);font-size:24px;font-weight:500;color:var(--green-primary)">Give students a head start</h3>
+            <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft)">The skills that matter in five years are being invented right now. We'd rather learn them early than catch up late.</p>
+          </div>
+          <div data-reveal="" data-lift="" style="transition-delay:80ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card)">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="accent" hint-size="auto,26px">Mission</x-import>
+            <h3 style="margin:18px 0 10px;font-family:var(--font-serif);font-size:24px;font-weight:500;color:var(--green-primary)">Adapt, then control</h3>
+            <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft)">Not to fear AI and not to worship it — to understand it well enough to direct it. Every meeting moves someone one step closer.</p>
+          </div>
+          <div data-reveal="" data-lift="" style="transition-delay:160ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card)">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ The hard part</x-import>
+            <h3 style="margin:18px 0 10px;font-family:var(--font-serif);font-size:24px;font-weight:500;color:var(--green-primary)">Ask the uncomfortable questions</h3>
+            <p style="margin:0;font-size:15px;line-height:1.7;color:var(--ink-soft)">Is it cheating? Whose work trained it? What happens to the jobs? We debate it openly instead of pretending it's settled.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ atItinerary }}">
+  <div data-screen-label="Itinerary" style="animation:sh-fade 0.5s ease both">
+
+    <section style="background:var(--green-deep);color:#fff;padding:70px 28px 60px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:2%;bottom:-60px;color:var(--brass)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="sprig" size="300" opacity="0.18" stroke-width="1.2" hint-size="300px,300px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Itinerary · 2026–2027</x-import>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Eighteen Mondays.</h1>
+        <p style="margin:18px 0 0;max-width:56ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">Every other Monday, 3:05 PM, in the lecture hall. Every meeting runs a few short sessions, so nobody sits through an hour of one thing. Dates skip school holidays, so a few land three weeks apart. Topics are subject to change.</p>
+        <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:26px;align-items:center">
+          <div style="flex:1;min-width:260px">
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--on-dark-soft);margin-bottom:8px"><span>Season progress</span><span>{{ doneCount }} of 18 held</span></div>
+            <div style="height:6px;border-radius:50px;background:rgba(255,255,255,0.16);overflow:hidden">
+              <div style="{{ progressStyle }}"></div>
+            </div>
+          </div>
+          <div style="background:rgba(255,255,255,0.07);border:1px solid rgba(195,154,91,0.45);border-radius:var(--radius-card);padding:16px 22px;min-width:280px">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--brass)">Up next</div>
+            <div style="margin-top:6px;font-family:var(--font-serif);font-size:22px">{{ nextTitle }}</div>
+            <div style="margin-top:4px;font-size:14px;color:var(--on-dark-soft)">{{ nextDate }}</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ showTrackFilters }}" hint-placeholder-val="{{ true }}">
+    <div data-m="sticky-bar" style="position:sticky;top:65px;z-index:20;background:var(--neutral-warm);border-bottom:1px solid rgba(0,0,0,0.07)">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-right:6px">Filter</span>
+        <sc-for list="{{ trackFilters }}" as="t" hint-placeholder-count="2">
+          <button data-chip="" data-track="{{ t.key }}" data-active="{{ t.active }}" onClick="{{ t.onClick }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+
+    <section style="padding:60px 28px 100px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto">
+        <div style="display:flex;flex-direction:column;gap:26px">
+          <sc-for list="{{ shownMeetings }}" as="m" hint-placeholder-count="4">
+            <div data-reveal="" data-lift="" data-m="meet-card" style="{{ m.cardStyle }}">
+              <div data-m="meet-panel" style="{{ m.panelStyle }}">
+                <div style="position:absolute;right:-34px;bottom:-38px;color:{{ m.motifColor }}">
+                  <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="{{ m.motif }}" size="132" opacity="0.2" stroke-width="1.2" hint-size="132px,190px"></x-import>
+                </div>
+                <div style="position:relative">
+                  <div style="{{ m.numStyle }}">Meeting {{ m.num }}</div>
+                  <div style="{{ m.monthStyle }}">{{ m.month }}</div>
+                  <div style="{{ m.dayStyle }}">{{ m.day }}</div>
+                  <div style="{{ m.yearStyle }}">Monday · {{ m.year }}</div>
+                </div>
+                <div style="position:relative;margin-top:26px;display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+                  <sc-if value="{{ m.isNextFlag }}">
+                    <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Up next</x-import>
+                  </sc-if>
+                  <sc-if value="{{ m.hasFlag }}">
+                    <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ m.flagTone }}" hint-size="auto,26px">★ {{ m.flag }}</x-import>
+                  </sc-if>
+                  <div style="{{ m.timeStyle }}">3:05 – 4:15 PM<br>The lecture hall</div>
+                </div>
+              </div>
+              <div data-m="meet-body" style="padding:16px 40px 20px 36px">
+                <sc-for list="{{ m.blocks }}" as="b" hint-placeholder-count="2">
+                  <div style="{{ b.rowStyle }}">
+                    <div style="display:flex;align-items:baseline;gap:12px;flex-wrap:wrap">
+                      <h3 style="{{ b.titleStyle }}">{{ b.title }}</h3>
+                      <sc-if value="{{ b.hasIcon }}">
+                        <span style="font-size:19px;line-height:1">{{ b.icon }}</span>
+                      </sc-if>
+                      <sc-if value="{{ b.hasPill }}">
+                        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ b.pillTone }}" hint-size="auto,26px">{{ b.pillLabel }}</x-import>
+                      </sc-if>
+                      <sc-if value="{{ b.hasLogo }}">
+                        <span style="{{ b.logoStyle }}"></span>
+                      </sc-if>
+                    </div>
+                    <p style="{{ b.detailStyle }}">{{ b.detail }}</p>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div data-reveal="" style="margin-top:38px">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="brass" title="★ Subject to change — and open to you" hint-size="100%,112px">Topics and dates can move as the year goes. If you want to lead one of these presentations for your own presentation, let me know and I can make that happen — email <a href="mailto:1807776@fcpsschools.net">1807776@fcpsschools.net</a>.</x-import>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ atResources }}">
+  <div data-screen-label="Resources" style="animation:sh-fade 0.5s ease both">
+
+    <section style="background:var(--green-deep);color:#fff;padding:70px 28px 60px;position:relative;overflow:hidden">
+      <div style="position:absolute;left:38%;top:-70px;color:var(--green-light)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="spark" size="320" opacity="0.14" stroke-width="1.2" hint-size="320px,320px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Resources</x-import>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Prompts &amp; skills,<br>ready to steal.</h1>
+        <p style="margin:18px 0 0;max-width:58ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">The club's shared library. Copy anything, change anything. If you build something better, it goes in here.</p>
+      </div>
+    </section>
+
+    <div data-m="sticky-bar" style="position:sticky;top:65px;z-index:20;background:var(--neutral-warm);border-bottom:1px solid rgba(0,0,0,0.07)">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;padding:18px 28px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+        <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-soft);margin-right:6px">Show</span>
+        <sc-for list="{{ typeFilters }}" as="t" hint-placeholder-count="3">
+          <button data-chip="" data-active="{{ t.active }}" onClick="{{ t.onClick }}">{{ t.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <section style="padding:52px 28px 96px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+        <sc-for list="{{ shownResources }}" as="r" hint-placeholder-count="4">
+          <div data-reveal="" data-lift="" data-pairstart="{{ r.pairStart }}" style="background:var(--white);border-radius:var(--radius-card);padding:28px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;overflow:hidden">
+            <sc-if value="{{ r.hasPair }}">
+              <div style="margin:-28px -28px 20px;padding:11px 28px;background:var(--green-light);border-bottom:1px solid rgba(30,110,87,0.18);font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green-primary)">{{ r.pairLabel }}</div>
+            </sc-if>
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ r.tone }}" hint-size="auto,26px">{{ r.kind }}</x-import>
+              <sc-if value="{{ r.isCowork }}">
+                <span style="display:inline-flex;align-items:center;padding:5px 11px;border-radius:50px;background:var(--green-light);color:var(--green-primary);font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Cowork only</span>
+              </sc-if>
+              <span style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto">{{ r.meta }}</span>
+            </div>
+            <h3 style="margin:0 0 8px;font-family:var(--font-serif);font-size:23px;font-weight:500;color:var(--green-primary)">{{ r.title }}</h3>
+            <p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--ink-soft)">{{ r.desc }}</p>
+            <pre style="flex:1;background:var(--green-deep);color:rgba(255,255,255,0.88);border-radius:8px;padding:18px 20px;font-size:13px;line-height:1.65;white-space:pre-wrap;overflow:auto;max-height:240px">{{ r.body }}</pre>
+            <div style="margin-top:18px;display:flex;align-items:center;gap:12px">
+              <button data-copy="" data-done="{{ r.copied }}" onClick="{{ r.onCopy }}">{{ r.copyLabel }}</button>
+              <span style="font-size:13px;color:var(--ink-soft)">{{ r.footer }}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <div data-reveal="" data-m="wrap" style="max-width:1240px;margin:34px auto 0">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="brass" title="★ Built one that works?" hint-size="100%,92px">Send it to <a href="mailto:1807776@fcpsschools.net" style="color:#2f6fa8;text-decoration:underline;text-underline-offset:3px">1807776@fcpsschools.net</a> and it gets added to the library with your name on it.</x-import>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ atProducts }}">
+  <div data-screen-label="Products" style="animation:sh-fade 0.5s ease both">
+
+    <section style="background:var(--green-deep);color:#fff;padding:70px 28px 60px;position:relative;overflow:hidden">
+      <div style="position:absolute;right:-30px;bottom:-50px;color:var(--brass)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="olive" size="300" opacity="0.18" stroke-width="1.2" hint-size="300px,300px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Products</x-import>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Things we actually made.</h1>
+        <p style="margin:18px 0 0;max-width:58ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">Not concepts. Not homework. Working artifacts, apps, and tools built by club members — with a link you can open right now.</p>
+      </div>
+    </section>
+
+    <section style="padding:64px 28px 96px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto">
+        <div data-reveal="" data-lift="" style="background:var(--white);border-radius:var(--radius-card);box-shadow:var(--shadow-card);overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);margin-bottom:24px">
+          <div data-m="pad-lg" style="padding:44px 44px 46px">
+            <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Featured build</x-import>
+            <h2 style="margin:20px 0 12px;font-family:var(--font-serif);font-size:36px;font-weight:500;letter-spacing:var(--track-display);color:var(--green-primary)">This website</h2>
+            <p style="margin:0 0 20px;font-size:17px;line-height:1.75;color:var(--ink)">Designed and built with AI as a co-worker, not a vending machine — brand system first, then the pages. It's the club's front door and its own best demo of what a member can build.</p>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px">
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Web</x-import>
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Design system</x-import>
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Claude</x-import>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+              <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="filled" size="md" as="a" href="#home" hint-size="auto,44px">You're on it</x-import>
+              <span style="font-size:14px;color:var(--ink-soft)">Built by <strong style="color:var(--ink)">Raphael</strong></span>
+            </div>
+          </div>
+          <div style="position:relative;background:var(--green-deep);display:grid;place-items:center;padding:40px;overflow:hidden">
+            <div style="position:absolute;width:70%;aspect-ratio:1;border-radius:50%;background:var(--green-accent);filter:blur(56px);opacity:0.5"></div>
+            <div style="position:absolute;inset:8%;border-radius:50%;border:1px dashed rgba(255,255,255,0.14);animation:sh-spin 48s linear infinite"></div>
+            <img src="assets/seahawk-hawk.png" alt="Seahawk AI mark" style="position:relative;width:62%;max-width:230px;animation:sh-float 9s ease-in-out infinite">
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px">
+          <sc-for list="{{ products }}" as="p" hint-placeholder-count="5">
+            <div data-reveal="" data-lift="" style="{{ p.cardStyle }}">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+                <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ p.tone }}" hint-size="auto,26px">{{ p.kind }}</x-import>
+                <span style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto">Slot {{ p.n }}</span>
+              </div>
+              <h3 style="margin:0 0 10px;font-family:var(--font-serif);font-size:23px;font-weight:500;color:var(--green-primary)">{{ p.title }}</h3>
+              <p style="margin:0 0 8px;font-size:15px;line-height:1.65;color:var(--ink-soft)">{{ p.desc }}</p>
+              <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft)"><strong style="color:var(--ink)">Built by:</strong> {{ p.by }}</p>
+              <div style="margin-top:auto">
+                <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outline" size="sm" as="a" href="#products" hint-size="auto,38px">Add link</x-import>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div data-reveal="" style="margin-top:34px">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="mint" title="Six open slots" hint-size="100%,92px">Every card is editable — drop in the real title, who built it, what it does, and the link. Build something at a meeting and it lands here.</x-import>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ atJoin }}">
+  <div data-screen-label="Join" style="animation:sh-fade 0.5s ease both">
+
+    <section style="position:relative;overflow:hidden;background:var(--green-deep);color:#fff;padding:88px 28px 96px">
+      <div style="position:absolute;left:-50px;bottom:-60px;color:var(--green-light)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="wing" size="420" opacity="0.11" stroke-width="1.2" hint-size="420px,280px"></x-import>
+      </div>
+      <div style="position:absolute;right:6%;top:40px;color:var(--brass)">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.LineArt" variant="swoosh" size="300" opacity="0.20" stroke-width="1.4" flip="{{ yes }}" hint-size="300px,160px"></x-import>
+      </div>
+      <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto;text-align:center">
+        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Join Seahawk AI</x-import>
+        <h1 style="margin:18px 0 0;font-family:var(--font-serif);font-size:clamp(40px,5.6vw,72px);font-weight:600;line-height:1.04;letter-spacing:var(--track-display)">Two things: show up,<br>bring a laptop.</h1>
+        <p style="margin:22px auto 0;max-width:52ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">No application, no tryout, no coding background. Any grade, any level. First meeting is Monday, September 14.</p>
+        <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin-top:36px">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="filled" size="lg" as="a" href="https://lms.fcps.edu/group/8135752601" target="_blank" rel="noopener" hint-size="auto,50px">Join on Schoology</x-import>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outlineOnDark" size="lg" as="a" href="https://instagram.com/seahawkai" target="_blank" rel="noopener" hint-size="auto,50px">Follow @seahawkai</x-import>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding:72px 28px 40px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px">
+        <a data-reveal="" data-lift="" href="https://lms.fcps.edu/group/8135752601" target="_blank" rel="noopener" style="display:block;background:var(--white);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card);color:inherit">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass)">Sign up</div>
+          <h3 style="margin:14px 0 10px;font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--green-primary)">Schoology group</h3>
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--ink-soft)">The official roster. Join here and you'll get meeting reminders and materials.</p>
+          <span style="font-size:14px;font-weight:600;color:var(--green-accent)">lms.fcps.edu/group/8135752601 →</span>
+        </a>
+        <a data-reveal="" data-lift="" href="https://instagram.com/seahawkai" target="_blank" rel="noopener" style="display:block;transition-delay:80ms;background:var(--white);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card);color:inherit">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass)">Follow</div>
+          <h3 style="margin:14px 0 10px;font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--green-primary)">Instagram</h3>
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--ink-soft)">Meeting announcements, member builds, and everything we make in the room.</p>
+          <span style="font-size:14px;font-weight:600;color:var(--green-accent)">@seahawkai →</span>
+        </a>
+        <a data-reveal="" data-lift="" href="mailto:1807776@fcpsschools.net" style="display:block;transition-delay:160ms;background:var(--white);border-radius:var(--radius-card);padding:32px 28px;box-shadow:var(--shadow-card);color:inherit">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass)">Ask</div>
+          <h3 style="margin:14px 0 10px;font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--green-primary)">Write us</h3>
+          <p style="margin:0 0 18px;font-size:15px;line-height:1.65;color:var(--ink-soft)">Questions about the club, a meeting topic, or an idea you want to build? Email us and we'll answer.</p>
+          <span style="font-size:14px;font-weight:600;color:#2f6fa8;text-decoration:underline;text-underline-offset:3px">1807776@fcpsschools.net →</span>
+        </a>
+      </div>
+    </section>
+
+    <section style="padding:32px 28px 96px">
+      <div data-m="wrap" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start">
+        <div data-reveal="" data-m="pad-lg" style="background:var(--green-primary);color:#fff;border-radius:var(--radius-card);padding:38px 34px">
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Where and when</x-import>
+          <div style="margin-top:22px;display:flex;flex-direction:column;gap:0">
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.2)">
+              <span style="color:var(--on-dark-soft);font-size:15px">Day</span><span style="font-weight:600">Every other Monday</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.2)">
+              <span style="color:var(--on-dark-soft);font-size:15px">Time</span><span style="font-weight:600">3:05 – 4:15 PM</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.2)">
+              <span style="color:var(--on-dark-soft);font-size:15px">Where</span><span style="font-weight:600">The lecture hall</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0">
+              <span style="color:var(--on-dark-soft);font-size:15px">First meeting</span><span style="font-weight:600">Monday, August 31, 2026</span>
+            </div>
+          </div>
+          <p style="margin:26px 0 0;font-family:var(--font-script);font-size:24px;color:var(--brass-light)">— see you there</p>
+        </div>
+        <div data-reveal="" style="transition-delay:80ms;display:flex;flex-direction:column;gap:18px">
+          <div style="background:var(--white);border-radius:var(--radius-card);padding:32px 30px;box-shadow:var(--shadow-card)">
+            <h3 style="margin:0 0 16px;font-family:var(--font-serif);font-size:26px;font-weight:500;color:var(--green-primary)">What to bring</h3>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--brass);font-weight:700">★</span><span style="font-size:16px;line-height:1.6">Bring a personal laptop if possible.</span></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--brass);font-weight:700">★</span><span style="font-size:16px;line-height:1.6">One thing you're curious about. We'll aim a meeting at it.</span></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--brass);font-weight:700">★</span><span style="font-size:16px;line-height:1.6">Zero AI experience, if that's where you're at. Genuinely fine.</span></div>
+            </div>
+          </div>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="mint" title="Missed a meeting?" hint-size="100%,92px">Every session's materials get posted to the Schoology group, and the prompts live on the Resources page. You can jump in at any point in the year.</x-import>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  </sc-if>
+
+  </main>
+
+  <footer style="background:var(--green-deep);color:#fff;padding:56px 28px 40px">
+    <div data-m="wrap" style="max-width:1240px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;gap:36px;justify-content:space-between;align-items:flex-start">
+        <div style="max-width:320px">
+          <div style="display:flex;align-items:center;gap:12px">
+            <img src="assets/seahawk-hawk.png" alt="" style="width:38px;height:38px;object-fit:contain">
+            <span style="font-size:15px;font-weight:800;letter-spacing:0.16em">SEAHAWK AI</span>
+          </div>
+          <p style="margin:16px 0 0;font-size:14px;line-height:1.7;color:var(--on-dark-soft)">A student-run AI club. Founded 2025 by Raphael Osinovsky and Rayyan Rahman.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-start">
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass)">Pages</span>
+          <button data-nav="" onClick="{{ goFounders }}" style="padding:0;color:rgba(255,255,255,0.75);font-weight:400;font-size:14px">Founders</button>
+          <button data-nav="" onClick="{{ goItinerary }}" style="padding:0;color:rgba(255,255,255,0.75);font-weight:400;font-size:14px">Itinerary</button>
+          <button data-nav="" onClick="{{ goResources }}" style="padding:0;color:rgba(255,255,255,0.75);font-weight:400;font-size:14px">Resources</button>
+          <button data-nav="" onClick="{{ goProducts }}" style="padding:0;color:rgba(255,255,255,0.75);font-weight:400;font-size:14px">Products</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:280px">
+          <span style="font-size:12px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--brass)">Find us</span>
+          <a href="https://instagram.com/seahawkai" target="_blank" rel="noopener" style="font-size:14px;color:#8ab4e0;text-decoration:underline;text-decoration-color:rgba(138,180,224,0.45);text-underline-offset:3px">Instagram @seahawkai</a>
+          <a href="https://lms.fcps.edu/group/8135752601" target="_blank" rel="noopener" style="font-size:14px;color:#8ab4e0;text-decoration:underline;text-decoration-color:rgba(138,180,224,0.45);text-underline-offset:3px">Join the Schoology group →</a>
+          <p style="margin:2px 0 0;font-size:14px;line-height:1.6;color:var(--on-dark-soft)">Questions? Write us at <a href="mailto:1807776@fcpsschools.net" style="color:#8ab4e0;text-decoration:underline;text-decoration-color:rgba(138,180,224,0.45);text-underline-offset:3px">1807776@fcpsschools.net</a></p>
+        </div>
+      </div>
+      <div style="margin-top:44px;padding-top:22px;border-top:1px solid rgba(255,255,255,0.16);display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.5)">
+        <span>Seahawk AI Club · 2026–2027 season</span>
+        <span>The lecture hall · Every other Monday, 3:05 PM</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;founders&quot;,&quot;itinerary&quot;,&quot;resources&quot;,&quot;products&quot;,&quot;join&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Behavior&quot;},&quot;showTrackFilters&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Behavior&quot;}}">
+const PAGES = ["home", "founders", "itinerary", "resources", "products", "join"];
+
+const TRACKS = {
+  standard: { key: "standard", pillLabel: "", pillTone: "mint" },
+  news: { key: "news", pillLabel: "News", pillTone: "mint" },
+  competition: { key: "competition", pillLabel: "★ Competition", pillTone: "brass" }
+};
+
+const T = {
+  claude: "assets/tools/claude.png",
+  openai: "assets/tools/openai.png",
+  gemini: "assets/tools/gemini.png",
+  copilot: "assets/tools/copilot.png",
+  grok: "assets/tools/grok-w.png",
+  deepseek: "assets/tools/deepseek.png"
+};
+
+const MOTIFS = ["feather", "sprig", "wing", "branch", "olive", "flight"];
+
+const NEWS = ["news", "Recent News", "New models, new tools, and whatever the industry set off in the last two weeks.", "", "📰"];
+
+const MEETINGS = [
+  ["2026-09-14", "", [
+    ["learn", "Meet the Club", "Who we are, what a meeting looks like, and what a year in here gets you.", "", ""],
+    ["learn", "How AI Works", "Tokens, training, context windows — in plain words, no math.", "", ""]
+  ]],
+  ["2026-09-28", "", [
+    ["build", "Prompting", "Role, context, constraints, examples. Five fixes you'll use on Tuesday.", "", ""],
+    ["build", "AI Chatbot Tools: Skills, Connectors, Plugins", "Wire a chatbot into your files, your apps, and a saved set of instructions.", "", ""]
+  ]],
+  ["2026-10-19", "", [
+    ["learn", "Comparing Models", "Claude, Gemini, ChatGPT and Grok on the same task. You judge the output.", "", ""],
+    ["learn", "Comparing AI Tools", "Which one to reach for: chat, notebook, image, code, research.", "", ""]
+  ]],
+  ["2026-11-02", "", [
+    ["build", "Artifacts", "Working pages, tools and mini-apps generated straight out of a chat.", "", ""],
+    ["learn", "Claude Design", "Why a design tool with a real brand system beats a blank prompt box.", T.claude, ""]
+  ]],
+  ["2026-11-16", "", [
+    ["learn", "Google AI Suite", "A dozen Google tools that talk to each other, and where they're ahead.", T.gemini, ""],
+    ["build", "Gemini Notebook", "A pile of sources into a notebook you'd actually study from.", T.gemini, "📓"],
+    ["competition", "Presidential AI Challenge Kickoff", "The categories, the rules, and the January 20 deadline.", "", ""]
+  ]],
+  ["2026-11-30", "", [
+    ["build", "Make Your Own Design Template", "Colors, type and layout, decided once and reused all year.", T.claude, ""],
+    ["learn", "AI Ethics and Dilemmas", "Bias, copyright, deepfakes, jobs, surveillance. Every hard question in one sitting.", "", ""],
+    ["competition", "Presidential AI Challenge Teams and Ideas", "Teams formed, roles assigned, one-line pitch written before you leave.", "", ""]
+  ]],
+  ["2026-12-14", "", [
+    ["build", "Make a Slide Deck Template", "One deck system for every club presentation. Build it, keep it.", "", ""],
+    ["competition", "Presidential AI Challenge Work Session", "Heads down on your entry. Officers float between teams.", "", ""]
+  ]],
+  ["2027-01-04", "", [
+    ["build", "Using Your Design: Posters and Flyers", "Take the template to print. Posters that actually go up in the hallway.", "", ""],
+    ["competition", "Presidential AI Challenge Final Push", "Last session before the January 20 deadline. Submit before you leave.", "", ""]
+  ]],
+  ["2027-01-25", "", [
+    ["learn", "Cowork", "No agenda. Bring your own thing and work next to people who'll help.", "", ""],
+    ["learn", "Debate: AI in School", "Where the line between using it and cheating actually sits. Sides assigned at the door.", "", "⚖️"],
+    ["competition", "Member Show and Tell", "Five minutes each, screens shared. Bring what you actually finished.", "", ""]
+  ]],
+  ["2027-02-08", "", [
+    ["build", "Make an App", "Describe it, test it, fix it. Something that runs before the bell.", "", ""],
+    ["learn", "Deep Research", "Agents that read fifty sources and hand back a cited report.", "", ""]
+  ]],
+  ["2027-02-22", "", [
+    ["build", "Game Design", "A browser game start to finish: the loop, the art, the sound.", "", "🎮"],
+    ["competition", "Playtest Night", "Everyone plays everyone else's. Loudest room of the year.", "", ""]
+  ]],
+  ["2027-03-08", "", [
+    ["build", "Image Generation", "Prompting for pictures: style, composition, and fixing what comes back wrong.", "", ""],
+    ["build", "Music Generation", "Write a track from a text description. Genre, mood, length, vocals.", "", ""],
+    ["build", "Video Generation", "Storyboard it, generate the shots, cut them together.", "", ""]
+  ]],
+  ["2027-03-29", "", [
+    ["learn", "AI in Every Industry", "Medicine, law, finance, sports — where a model is already trusted with real work.", "", ""],
+    ["learn", "Agents and Automation", "What changes when it can act instead of answer.", "", ""],
+    ["competition", "Member Spotlight", "One member, ten minutes: the thing they made and how they made it.", "", ""]
+  ]],
+  ["2027-04-12", "", [
+    ["learn", "US vs. China AI", "Two countries, two strategies, and what open weights changed.", "", ""],
+    ["learn", "Debate: Who Answers When It's Wrong", "Accountability, bias, and whose work trained it. Pick a side before you sit down.", "", "⚖️"],
+    ["build", "Build Your Portfolio Page", "One page for everything you made this year.", "", ""]
+  ]],
+  ["2027-04-26", "", [
+    ["learn", "AI, College, and Careers", "Applications, majors, and where this helps you or hurts you.", "", ""],
+    ["build", "Publish Your Project", "Your name on it and a URL you can text to someone.", "", ""]
+  ]],
+  ["2027-05-10", "", [
+    ["build", "Demo Day Posters", "One poster per project, designed and printed.", "", ""],
+    ["build", "Demo Day Prep", "Two minutes, no slides, honest feedback. Run it twice.", "", ""]
+  ]],
+  ["2027-05-24", "Demo Day", [
+    ["competition", "Member Project Presentations", "Two minutes each, whole club watching, guests scoring.", "", ""],
+    ["competition", "Next Year's Officers", "Named at the end. Then we go get food.", "", ""]
+  ]],
+  ["2027-06-07", "", [
+    ["learn", "This Year in AI", "Ten months of releases in one sitting. What actually mattered.", "", ""],
+    ["build", "Next Year Brainstorm", "You write the itinerary for the next crew.", "", ""],
+    ["learn", "Officer Handoff", "Roles, logins, and everything that made this run.", "", ""]
+  ]]
+];
+
+const RESOURCES = [
+  {
+    kind: "Prompt", tone: "accent", meta: "Studying", title: "Study-guide generator",
+    desc: "Turns messy class notes into a structured guide plus a self-quiz you can actually fail.",
+    footer: "Paste your notes after the prompt.",
+    body: "You are a study coach for a high school student.\n\nI'm pasting my raw class notes below. Do three things:\n1. Rewrite them as a clean study guide with headers and bullet points.\n2. Flag anything that looks incomplete, contradictory, or missing.\n3. Write 10 quiz questions — 6 recall, 4 that require applying the idea to a new situation — then the answer key at the very bottom so I can't peek.\n\nDon't simplify past the point of being accurate. If a term matters, keep it.\n\nNOTES:\n<<<paste here>>>"
+  },
+  {
+    kind: "Prompt", tone: "accent", meta: "Writing", title: "Devil's advocate",
+    desc: "Attacks your thesis before your teacher does. The fastest way to find a weak argument.",
+    footer: "Best used on a finished draft.",
+    body: "Act as the smartest person who disagrees with me.\n\nHere is my thesis and my argument. Your job is to take it apart:\n- Name the single weakest claim and explain exactly why it's weak.\n- Give the strongest counterargument a well-read critic would make.\n- Point out any evidence I'm treating as proof that isn't.\n- Tell me what a reader would need to see to be convinced.\n\nBe direct. Do not compliment the writing. Do not rewrite it for me.\n\nTHESIS + ARGUMENT:\n<<<paste here>>>"
+  },
+  {
+    kind: "Prompt", tone: "accent", meta: "Deciding", title: "The LLM Council",
+    desc: "Five advisors argue your question, review each other blind, then a chairman actually calls it.",
+    footer: "Best on decisions with real tradeoffs.",
+    body: "Run this through the LLM Council. Do all three stages in order. Don't skip ahead and don't summarize as you go.\n\nSTAGE 1 — Answer my question five separate times, once as each advisor. Each one stays fully in character. No hedging, no \"on the other hand.\"\n1. THE CONTRARIAN — only finds what will fail. Where does this break? What am I not seeing?\n2. THE FIRST PRINCIPLES THINKER — strips every assumption out of my question and rebuilds it. Often the question itself is wrong.\n3. THE EXPANSIONIST — finds the upside I'm missing. What's the bigger version of this?\n4. THE OUTSIDER — has zero context about this world. What looks weird from the outside? What am I taking for granted?\n5. THE EXECUTOR — only cares about Monday morning. What's the one concrete first action, and the smallest version that ships this week?\n\nSTAGE 2 — Relabel the five as A through E in a shuffled order. Don't tell me which is which. Then review them: which is strongest and why, which has the biggest blind spot, and what all five missed.\n\nSTAGE 3 — As Chairman: the final recommendation in plain language, the single most important reason behind it, and one concrete next step.\n\nMY QUESTION:\n<<<paste here>>>"
+  },
+  {
+    kind: "Prompt", tone: "accent", meta: "Writing", title: "Plan the whole essay",
+    desc: "Everything before the first sentence: the real question, a defendable thesis, and a schedule.",
+    footer: "Paste the rubric too — it changes the plan.",
+    body: "Help me plan an entire essay before I write a word.\n\nASSIGNMENT (prompt, rubric, word count, due date):\n<<<paste here>>>\n\nDo this in order:\n1. Tell me what this question is actually asking, in one sentence. Flag it if it's really two questions.\n2. Give me three possible thesis statements at different levels of ambition, and say which one I can actually defend in the word count.\n3. For the one you'd pick: an outline where every paragraph's job is one line, with a rough word budget.\n4. Name the evidence each paragraph needs and where I'd go looking for it. Do not invent sources or quotes.\n5. Name the strongest objection to my thesis and where in the outline I should answer it.\n6. Give me a work schedule back-timed from the due date.\n\nDon't write the essay. Don't write any full paragraphs."
+  },
+  {
+    kind: "Prompt", tone: "accent", meta: "Studying", title: "Grade it against the rubric",
+    desc: "Marks your draft in the bands your teacher uses, and quotes the line that cost you.",
+    footer: "Use it on a draft you're proud of.",
+    body: "Grade this the way my teacher will, before my teacher does.\n\nFor every criterion in the rubric:\n- Give the band you'd actually put me in, not the one you think I want.\n- Quote the exact line from my draft that decided it.\n- Say the smallest change that would move me up one band.\n\nThen: the three fixes worth my time, in order, and the one thing I should stop doing across the whole piece.\n\nBe strict. A generous grade now costs me the real one later.\n\nRUBRIC:\n<<<paste here>>>\n\nDRAFT:\n<<<paste here>>>"
+  },
+  {
+    kind: "Prompt", tone: "accent", meta: "Writing", title: "Interview me",
+    desc: "For personal essays. It asks the questions until you say something only you could say.",
+    footer: "Answer honestly or it's useless.",
+    body: "Interview me until I have something real to write about.\n\nI need to write a [personal essay / speech / application answer] about [topic]. I don't want you to write it, and I don't want a list of ideas to pick from.\n\nAsk me one question at a time and wait for my answer. Start wide, then follow whatever I say that sounds most specific or most uncomfortable. Push for scenes: where I was, what I said, what I got wrong. If I answer in generalities, tell me so and ask again.\n\nAfter about ten questions, stop and show me:\n- the three moments in my answers with the most in them,\n- the thing I keep circling back to without noticing,\n- the one sentence I said that sounds most like me.\n\nUse my words, not better ones."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Design", title: "Deck designer",
+    desc: "Turns notes into a deck with one visual system instead of fifteen fonts and a wall of bullets.",
+    footer: "Tell it the topic and the time slot.",
+    body: "# Skill: deck designer\n\nINPUT\nThe topic, the audience, how long I'm speaking, and whatever notes I already have.\n\nDECIDE BEFORE DESIGNING ANYTHING\n1. One sentence: what should the room believe when I sit down?\n2. The arc, in five beats. Cut anything that doesn't serve one of them.\n3. Slide count: roughly one slide per minute of talking. Say the number before you build.\n4. Pick ONE type pairing and ONE accent color and use them on every slide. Two background colors, maximum.\n\nRULES FOR THE SLIDES\n- One idea per slide. If a slide needs the word \"and,\" it's two slides.\n- Headlines in sentence case, under eight words.\n- Nothing smaller than 24px. I'm presenting to a room, not a laptop.\n- A number gets its own slide: big, with the label underneath.\n- No list longer than three lines. No clip art. No emoji.\n- Section breaks look different from content slides so people feel the turn.\n\nFINISH WITH\nSpeaker notes in spoken English, and the three questions I'm most likely to get."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Design", title: "Design critique",
+    desc: "A blunt review of your layout in the order that actually matters — color comes last.",
+    footer: "Paste a screenshot or a link.",
+    body: "# Skill: design critique\n\nINPUT\nA screenshot, a link, or the code for something I made.\n\nCRITIQUE IN THIS ORDER — don't jump to color\n1. Squint test. What does the eye hit first, second, third? Is that the order I'd want?\n2. Hierarchy. Is anything important competing with something unimportant? Name the pair.\n3. Spacing. Where's the rhythm broken — uneven gaps, cramped edges, elements floating with no relationship?\n4. Type. How many sizes and weights are in play? Which ones do the same job and should be merged?\n5. Color. Only now. Anything low contrast? Is the accent doing one job or five?\n6. Copy. Read the words with the layout stripped away. Do they still make sense?\n\nTHEN\n- The single highest-leverage fix, first.\n- Two more worth doing.\n- One thing that's genuinely working, named specifically.\n\nDon't redesign it for me. Never say \"clean and modern.\""
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Building", title: "Generative art",
+    desc: "Art drawn by code: a seed, a set of rules, and a thousand versions you didn't have to draw.",
+    footer: "Change the seed, get a new one.",
+    body: "# Skill: generative art\n\nWHAT I WANT\nOne self-contained p5.js sketch I can open in a browser and re-run.\n\nRULES\n- Every random value comes from one seeded generator, so the same seed always redraws the same piece and a new seed gives me a new one. Print the seed on the canvas.\n- Pick a palette of 3-5 colors up front and stay in it. No rainbow.\n- Build the piece from one clear system — a flow field, a grid with rules, particles, recursive subdivision — and name it in a comment with why you chose it.\n- Composition beats novelty. Leave real empty space; don't fill the canvas edge to edge.\n- Bind a key that saves a high-resolution PNG.\n\nTHEN\nTell me the three numbers in the code worth changing, what each does to the result, and a sensible range for each."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Research", title: "Fact-check this",
+    desc: "Separates what is actually sourced from what merely sounds sourced, claim by claim.",
+    footer: "Works on AI output and on articles.",
+    body: "# Skill: fact-check\n\nINPUT\nAnything I paste: an article, a claim, or something an AI told me.\n\nDO\n1. Pull every checkable claim out as its own line. Ignore opinion and framing.\n2. Mark each one verified, unsupported, misleading, or false — with the source that settles it, including a link and a date.\n3. Say when something was true once but is out of date now.\n4. Flag any number that gets repeated everywhere but traces back to no original source.\n5. Name anything technically true that still leaves a false impression.\n\nRULES\n- Prefer primary sources: the study, the filing, the official page. Not an article about the study.\n- If you can't verify something, say \"couldn't verify.\" Never fill the gap with a guess.\n- Don't invent citations. A made-up source is worse than no source.\n\nFINISH WITH\nOne line: what would have to be true for the overall point to hold up."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Writing", title: "Finish my sentence",
+    desc: "You write the opening. It continues in your exact voice instead of upgrading you into a robot.",
+    footer: "Write the first line yourself.",
+    body: "# Skill: finish my sentence\n\nWHEN TO USE\nOnly when I ask for it. Never automatically, even if I paste my own writing.\n\nWHAT IT DOES\nI write the first sentence or paragraph. You continue from exactly where I stopped, so nobody can tell where the handoff happened.\n\nRULES\n- Match my level. Not better. Writing more eloquently than my opening is the fastest way to get caught.\n- Copy my sentence rhythm — fragments, run-ons, whatever is actually there.\n- Stay in my vocabulary. If I wrote \"a lot,\" don't write \"substantially.\"\n- Don't fix my grammar, my spelling, or my missing thesis. Don't add structure I never set up.\n- No em-dashes. No parentheticals.\n- Keep my transitions and my quirks, including the odd ones.\n- Follow the thread I started. Don't introduce big new ideas.\n\nDon't announce the skill. Don't say you're continuing in my voice. Just write."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Workflow", title: "Pick the right tool",
+    desc: "Stops and figures out the best way to do the thing before doing it the obvious way.",
+    footer: "Use it before a big task, not during.",
+    body: "# Skill: pick the right tool\n\nWHEN TO USE\nOnly when I ask for it directly. Never by inference.\n\nWHAT IT DOES\nBefore answering, stop and work through:\n1. What am I actually trying to accomplish?\n2. Is there a tool or skill that does this better than a plain answer?\n3. Is there a smarter approach I haven't considered?\n4. What's the cheapest path to a good result?\n\nThen route to the right tool, recommend a better approach, or just answer. Don't force a skill that doesn't help.\n\nCOST ORDER — always prefer cheaper\nFree: built-in skills, connectors (Drive, Gmail, Calendar), design tools.\nModerate: subagents, the LLM Council.\nExpensive: browser control and computer use. Never reach for those if a connector can do the same job.\n\nROUTING EXAMPLES\nA hard decision → the Council. A topic I need to actually learn → the deep dive skill. Comparing model answers → the ask-all-the-AIs skill. Anything visual → build it, don't describe it. Writing that has to sound like me → the voice skill. A long build → the Brain and Muscle pair."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Research", title: "Deep dive", cowork: true,
+    desc: "Builds a real source-backed notebook on any topic, then hands you an outline, a deck, or an audio walkthrough.",
+    footer: "Give it a topic and stand back.",
+    body: "# Skill: deep dive\n\nWHEN TO USE\nWhen I ask for a deep dive, a notebook, or an audio overview on a topic.\n\nREQUIRES CLAUDE COWORK\nThis drives Gemini Notebook (notebook.google.com) in a real Chrome window. It cannot run in a normal chat.\n\nASK FIRST — one round, then go\nWhich output(s) I want: a slide outline as text, a generated slide deck, or an audio overview. I can pick more than one. Then name the 4-6 sub-angles you'll gather sources for and start. Don't ask me to approve them.\n\nBUILD THE NOTEBOOK — always, for every output\n- 12-20 sources.\n- 5-8 must be YouTube videos. Not optional: videos carry the hands-on tips and honest reactions that never make it into official docs.\n- The rest are authoritative text: papers, .gov/.edu, official docs, first-party announcements.\n- Include at least one source that disagrees with the mainstream take.\n- Skip paywalled pages. They import empty and get dropped silently.\n- Paste all the URLs at once, then count what actually loaded. Say plainly if something was rejected.\n- Rename the notebook \"[Topic] — [Month Year]\".\n\nINTERROGATE IT BEFORE WRITING ANYTHING\nAsk the notebook, from these sources only: the current state of the art, what changed most recently, every documented limitation with numbers, the non-obvious practical tips the videos give that the docs don't, and anything the sources disagree on.\n\nOUTPUTS\nOutline: 15-20 slides, on-slide copy only, ~15 words a slide max. Open with a hook, end with real limitations and a takeaway card.\nDeck: Studio, Slide Deck, Presenter Slides. Then speaker notes and ten likely questions.\nAudio: one narrator only. Plain, fast, honest about what's weak."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Research", title: "Ask all the AIs", cowork: true,
+    desc: "Sends one question to ChatGPT, Claude, Grok and Gemini, then shows you where they disagree.",
+    footer: "One question, four answers.",
+    body: "# Skill: ask all the AIs\n\nWHEN TO USE\nWhen I ask what the other models think, or ask you to run a question past ChatGPT, Grok and Gemini.\n\nREQUIRES CLAUDE COWORK\nIt opens tabs in my own Chrome and uses my logged-in accounts.\n\nDO\n1. Open a new tab for each: chatgpt.com, claude.ai/new, grok.com, gemini.google.com.\n2. Send my question exactly as I wrote it. No rephrasing, no added instructions.\n3. Wait for each answer to finish generating before reading it. Long ones take a minute.\n4. Close the tabs you opened.\n\nREPORT\n\"ChatGPT said:\" / \"Claude said:\" / \"Grok said:\" / \"Gemini said:\" — each answer verbatim. Don't trim, summarize, or clean anything up. Then 2-4 sentences: where they agree, where they actually disagree, and what one of them caught that the others missed.\n\nIF A SITE FAILS\nNot logged in, a captcha, or two failed tries: skip it, say why in one line, keep going. Never let one broken site kill the run."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Research", title: "Notebook control", cowork: true,
+    desc: "Reads your notebooks, adds sources, and generates Studio outputs without you clicking through it.",
+    footer: "Name the notebook and what you want.",
+    body: "# Skill: notebook control\n\nWHEN TO USE\nAnything involving my notebooks: read one, ask it a question, add sources, or generate a Studio output.\n\nREQUIRES CLAUDE COWORK\nBrowser control, and I need to already be signed in to Google. Don't try to handle the login — stop and tell me.\n\nRULES\n- Screenshot before every action. It's a live app and the layout moves.\n- Reading: use the notebook's own chat. It's grounded in the sources and cites them. Ask my question the way I'd ask it, then report the answer cleanly, not as a raw dump.\n- Adding sources: + Add source, paste all the URLs at once, wait, then confirm each one actually loaded.\n- Studio: click the small chevron beside the output type, not the button itself. Always write a specific custom prompt — the default produces mush.\n- Don't wait for generation to finish. Confirm it started, tell me, move on.\n- One action at a time, confirmed by screenshot, before the next."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Workflow", title: "Brain", cowork: true, coworkOnly: true, pairStart: true, pairLabel: "Two-chat relay \u00b7 1 of 2 \u00b7 pairs with Muscle",
+    desc: "Half of a two-chat setup. The smart model plans and decides, and never touches the work.",
+    footer: "Run this one on the strongest model.",
+    body: "# Skill: Brain — half one of a two-chat relay\n\nTHE SETUP\nTwo chats side by side. This one, Brain, on the strongest model: it thinks and decides. A second chat, Muscle, on a fast model: it executes. They can't see each other. I copy blocks between them by hand — so every block has to stand alone.\n\nYOUR JOB\nBreak the goal into a plan and make the judgment calls: which approach, which tradeoff, what \"done\" looks like. When I paste a === TO BRAIN === block, that's Muscle stuck. Diagnose it, pick one option, and say why in a sentence. Never send back \"it depends.\"\n\nWHAT YOU DON'T DO\nDon't do the work. No writing the deliverable, no running the task. Quick fact-checking is fine. If you catch yourself executing, stop and put it in the handoff instead.\n\nEND EVERY RESPONSE WITH THIS BLOCK\n=== TO MUSCLE ===\nGOAL: <one or two sentences, restated every time>\nCONTEXT: <file names, decisions already made, constraints>\nDO THIS:\n1. <concrete step>\n2. <concrete step>\nDONE WHEN: <how Muscle knows it's finished>\nIF STUCK: reply with a === TO BRAIN === block.\n=== END ===\n\nRestate the goal and context fresh every time. Muscle may be a brand-new chat. Never write \"as discussed.\" Steps are decisions already made, not menus."
+  },
+  {
+    kind: "Skill", tone: "solid", meta: "Workflow", title: "Muscle", cowork: true, coworkOnly: true, pairLabel: "Two-chat relay \u00b7 2 of 2 \u00b7 pairs with Brain",
+    desc: "The other half. A fast model that executes the plan and escalates instead of improvising.",
+    footer: "Run this one on a fast model.",
+    body: "# Skill: Muscle — half two of a two-chat relay\n\nTHE SETUP\nI'm running a Brain chat on a strong model that decides, and this one that executes. You can't see that chat. I paste its === TO MUSCLE === blocks in here.\n\nYOUR JOB\nExecute. The deciding is already done. Don't relitigate the plan, propose alternatives, or ask \"are you sure?\" Follow DO THIS in order. DONE WHEN is the finish line.\n\nHandle small obstacles yourself — a wrong filename, a command that needs a flag, a page that needs a scroll. Be resourceful inside the plan, never outside it.\n\nWHEN TO ASK ME vs ESCALATE\nAsk me only for five-second facts: which file I meant, or a yes/no before something irreversible. Everything else that blocks you — the approach isn't working, an assumption was wrong, the results contradict the plan — goes to Brain.\n\nWHEN BLOCKED, END WITH THIS BLOCK\n=== TO BRAIN ===\nGOAL: <the objective, restated>\nDONE SO FAR: <what's complete and where it lives>\nPROBLEM: <exact error text or observed behavior>\nTRIED: <what you attempted and what happened>\nOPTIONS: <2-3 ways forward, one line of tradeoff each>\nNEED: <the decision you need back>\n=== END ===\n\nOne problem per block. Don't pick an option yourself — that's Brain's call."
+  }
+];
+
+const PRODUCTS = [
+  { kind: "Open slot", tone: "mint", title: "Your artifact goes here", desc: "A working artifact a member built in a meeting — a tool, a game, a generator. Add a title, a sentence on what it does, and the link.", by: "Add a name" },
+  { kind: "Open slot", tone: "mint", title: "Your web app goes here", desc: "Something with a real URL that a friend could open on their phone right now. Say what problem it solves.", by: "Add a name" },
+  { kind: "Open slot", tone: "mint", title: "Your tool goes here", desc: "A prompt library, a script, an automation — anything that saves somebody time. Add who built it and why.", by: "Add a name" },
+  { kind: "Open slot", tone: "mint", title: "Your demo goes here", desc: "A video walkthrough or an experiment that didn't quite become a product but was worth showing.", by: "Add a name" },
+  { kind: "Open slot", tone: "mint", title: "Your experiment goes here", desc: "The one that broke in an interesting way. Write down what you learned — that counts too.", by: "Add a name" }
+];
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const LONG_MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+class Component extends DCLogic {
+  state = { page: "home", track: "all", rtype: "all", copied: null };
+
+  componentDidMount() {
+    this._onHash = () => {
+      const h = (location.hash || "").replace("#", "").toLowerCase();
+      if (PAGES.indexOf(h) !== -1 && h !== this.state.page) this.setState({ page: h });
+    };
+    window.addEventListener("hashchange", this._onHash);
+    const startPage = this.props.startPage;
+    if (startPage && PAGES.indexOf(startPage) !== -1 && !location.hash) {
+      this.setState({ page: startPage });
+    }
+    this._onHash();
+    this.observe();
+    try {
+      this._mo = new MutationObserver(() => this.observe());
+      this._mo.observe(document.body, { childList: true, subtree: true });
+    } catch (e) {}
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this._onHash);
+    if (this._io) this._io.disconnect();
+    if (this._mo) this._mo.disconnect();
+    if (this._iv) clearInterval(this._iv);
+    clearTimeout(this._t);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.page !== this.state.page) {
+      try { document.scrollingElement.scrollTop = 0; } catch (e) {}
+    }
+    this.observe();
+  }
+
+  observe() {
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      const show = (el) => {
+        el.classList.add("sh-done");
+        el.classList.remove("sh-out");
+      };
+      if (!this._io) {
+        this._io = new IntersectionObserver((entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting || e.boundingClientRect.bottom < 0) show(e.target);
+          });
+        }, { rootMargin: "0px 0px -6% 0px", threshold: 0.04 });
+      }
+      const sweep = () => {
+        const f = (document.documentElement.clientHeight || 800) * 0.94;
+        let pending = 0;
+        document.querySelectorAll("[data-reveal]").forEach((el) => {
+          if (el.classList.contains("sh-done")) return;
+          if (el.getBoundingClientRect().top < f) show(el);
+          else { pending++; el.classList.add("sh-out"); this._io.observe(el); }
+        });
+        if (!pending && this._iv) { clearInterval(this._iv); this._iv = 0; }
+      };
+      sweep();
+      if (!this._iv) this._iv = setInterval(sweep, 200);
+    }, 40);
+  }
+
+  go = (p) => (ev) => {
+    if (ev && ev.preventDefault) ev.preventDefault();
+    this.setState({ page: p });
+    try { document.scrollingElement.scrollTop = 0; } catch (e) {}
+    try { history.replaceState(null, "", "#" + p); } catch (e) {}
+  };
+
+  meetings() {
+    const now = new Date();
+    let nextFound = false;
+    return MEETINGS.map((m, i) => {
+      const [y, mo, d] = m[0].split("-").map(Number);
+      const dt = new Date(y, mo - 1, d, 23, 59);
+      const past = dt < now;
+      const isNext = !past && !nextFound;
+      if (isNext) nextFound = true;
+      const blocksRaw = (i >= 2 && i % 2 === 0 ? [NEWS] : []).concat(m[2] || []);
+      const hasComp = blocksRaw.some((bk) => bk[0] === "competition");
+      const dark = i % 2 === 0;
+      return {
+        num: String(i + 1).padStart(2, "0"),
+        iso: m[0],
+        month: MONTHS[mo - 1],
+        day: String(d),
+        shortDate: MONTHS[mo - 1] + " " + d,
+        weekday: "Monday",
+        longDate: LONG_MONTHS[mo - 1] + " " + d + ", " + y,
+        flag: m[1],
+        hasFlag: !!m[1],
+        track: hasComp ? "competition" : "standard",
+        blocks: blocksRaw.map((bk, j) => {
+          const bt = TRACKS[bk[0]] || TRACKS.standard;
+          return {
+            key: j,
+            typeKey: bt.key,
+            title: bk[1],
+            detail: bk[2],
+            icon: bk[4] || "",
+            hasIcon: !!bk[4],
+            hasLogo: !!bk[3],
+            hasPill: !!bt.pillLabel,
+            pillLabel: bt.pillLabel || "",
+            pillTone: bt.pillTone || "mint",
+            rowStyle: { padding: "22px 0", borderTop: j === 0 ? "none" : "1px solid var(--hairline)" },
+            titleStyle: { margin: 0, fontFamily: "var(--font-serif)", fontSize: "23px", fontWeight: 500, lineHeight: 1.25, letterSpacing: "var(--track-display)", color: "var(--green-primary)" },
+            detailStyle: { margin: "9px 0 0", fontSize: "16.5px", lineHeight: 1.7, color: "var(--ink-soft)" },
+            logoStyle: {
+              flex: "0 0 auto",
+              width: "30px",
+              height: "30px",
+              borderRadius: "50%",
+              border: "1px solid var(--hairline)",
+              background: "var(--white) " + (bk[3] ? "url(" + bk[3] + ")" : "none") + " center / 18px 18px no-repeat"
+            }
+          };
+        }),
+        typeKeys: blocksRaw.map((bk) => (TRACKS[bk[0]] || TRACKS.standard).key),
+        title: blocksRaw.map((bk) => bk[1]).join(" · "),
+        blockCount: blocksRaw.length + (blocksRaw.length === 1 ? " session" : " sessions"),
+        past: past,
+        isNext: isNext ? "1" : "0",
+        isNextFlag: isNext,
+        year: String(y),
+        motif: MOTIFS[i % MOTIFS.length],
+        motifColor: dark ? "var(--green-light)" : hasComp ? "var(--brass)" : "var(--green-primary)",
+        flagTone: dark ? "brass" : "solid",
+        cardStyle: {
+          background: "var(--white)",
+          borderRadius: "var(--radius-card)",
+          boxShadow: isNext ? "0 0 0 2px var(--brass), var(--shadow-card)" : "var(--shadow-card)",
+          overflow: "hidden",
+          display: "grid",
+          gridTemplateColumns: "202px minmax(0,1fr)"
+        },
+        panelStyle: {
+          position: "relative",
+          overflow: "hidden",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          padding: "32px 20px 32px 26px",
+          background: dark ? "var(--green-deep)" : "var(--ivory)",
+          borderRight: dark ? "none" : "1px solid " + (hasComp ? "var(--brass-light)" : "var(--hairline)"),
+          borderLeft: hasComp ? "4px solid var(--brass)" : "none",
+          opacity: past ? 0.62 : 1
+        },
+        numStyle: { fontSize: "11px", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "var(--brass-light)" : hasComp ? "#8a6636" : "var(--ink-soft)" },
+        monthStyle: { marginTop: "16px", fontFamily: "var(--font-serif)", fontSize: "21px", fontStyle: "italic", lineHeight: 1, color: dark ? "var(--green-light)" : "var(--green-accent)" },
+        dayStyle: { fontFamily: "var(--font-serif)", fontSize: "58px", fontWeight: 500, lineHeight: 1.05, letterSpacing: "var(--track-display)", color: dark ? "#fff" : "var(--green-primary)" },
+        yearStyle: { marginTop: "9px", fontSize: "13px", fontWeight: 600, color: dark ? "var(--on-dark-soft)" : "var(--ink-soft)" },
+        timeStyle: { fontSize: "13px", fontWeight: 600, lineHeight: 1.6, color: dark ? "var(--on-dark-soft)" : "var(--ink-soft)" }
+      };
+    });
+  }
+
+  renderVals() {
+    const st = this.state;
+    this.observe();
+    const all = this.meetings();
+    const done = all.filter((m) => m.past).length;
+    const next = all.filter((m) => m.isNext === "1")[0] || all[all.length - 1];
+    const showFilters = this.props.showTrackFilters !== false;
+
+    const FILTER_KEYS = ["all", "competition"];
+    const FILTER_LABELS = { all: "All 18 meetings", competition: "Competition dates" };
+    const trackFilters = FILTER_KEYS.map((k) => ({
+      key: k,
+      label: FILTER_LABELS[k],
+      active: st.track === k ? "1" : "0",
+      onClick: () => this.setState({ track: k })
+    }));
+
+    const RTYPE_LABELS = { all: "Everything", Prompt: "Prompts", Skill: "Skills", cowork: "Cowork only" };
+    const typeFilters = ["all", "Prompt", "Skill", "cowork"].map((k) => ({
+      key: k,
+      label: RTYPE_LABELS[k],
+      active: st.rtype === k ? "1" : "0",
+      onClick: () => this.setState({ rtype: k })
+    }));
+
+    const matchesType = (r) => st.rtype === "all" ? true : st.rtype === "cowork" ? !!r.cowork : (r.kind === st.rtype && !r.coworkOnly);
+    const shownResources = RESOURCES.filter(matchesType).map((r, i) => {
+      const id = r.title;
+      const isCopied = st.copied === id;
+      return Object.assign({}, r, {
+        isCowork: !!r.cowork,
+        hasPair: !!r.pairLabel,
+        pairStart: r.pairStart ? "1" : "0",
+        copied: isCopied ? "1" : "0",
+        copyLabel: isCopied ? "Copied ✓" : "Copy",
+        onCopy: () => {
+          const done2 = () => {
+            this.setState({ copied: id });
+            clearTimeout(this._c);
+            this._c = setTimeout(() => this.setState({ copied: null }), 1800);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(r.body).then(done2, done2);
+          } else {
+            const ta = document.createElement("textarea");
+            ta.value = r.body;
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand("copy"); } catch (e) {}
+            document.body.removeChild(ta);
+            done2();
+          }
+        }
+      });
+    });
+
+    const products = PRODUCTS.map((p, i) => Object.assign({}, p, {
+      n: String(i + 2),
+      cardStyle: {
+        background: "rgba(255,255,255,0.5)",
+        border: "1px dashed var(--brass-light)",
+        borderRadius: "var(--radius-card)",
+        padding: "28px 26px",
+        display: "flex",
+        flexDirection: "column"
+      }
+    }));
+
+    return {
+      atHome: st.page === "home",
+      atFounders: st.page === "founders",
+      atItinerary: st.page === "itinerary",
+      atResources: st.page === "resources",
+      atProducts: st.page === "products",
+      atJoin: st.page === "join",
+      goHome: this.go("home"),
+      goFounders: this.go("founders"),
+      goItinerary: this.go("itinerary"),
+      goResources: this.go("resources"),
+      goProducts: this.go("products"),
+      goJoin: this.go("join"),
+      yes: true,
+      showTrackFilters: showFilters,
+      trackFilters: trackFilters,
+      typeFilters: typeFilters,
+      shownMeetings: all.filter((m) => st.track === "all" || m.typeKeys.indexOf(st.track) !== -1),
+      shownResources: shownResources,
+      products: products,
+      doneCount: done,
+      nextTitle: next.blocks.map((b) => b.title).slice(0, 2).join(" · "),
+      nextDate: next.weekday + ", " + next.longDate,
+      nextShort: next.shortDate,
+      nextSub: "Monday · " + next.blocks[0].title,
+      progressStyle: {
+        width: Math.max(2, Math.round((done / all.length) * 100)) + "%",
+        height: "100%",
+        borderRadius: "50px",
+        background: "var(--brass)",
+        transition: "width 0.8s cubic-bezier(.25,.46,.45,.94)"
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

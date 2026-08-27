@@ -1,0 +1,37 @@
+/* Seahawk AI — Typography tokens
+   Three faces, three contexts: Inter everywhere; Lora for editorial headline moments;
+   Caveat for personal/handwritten touches. Tracking is tight (-0.01em) almost universally. */
+:root {
+  /* ---- Families ---- */
+  --font-sans:   Inter, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif:  Lora, "Iowan Old Style", Georgia, serif;
+  --font-script: Caveat, "Comic Sans MS", cursive;
+
+  /* ---- Size scale (px; the source anchors rem to 1rem=10px) ---- */
+  --text-display: 80px;  /* hero/display */
+  --text-jumbo:   58px;  /* secondary hero */
+  --text-hero:    45px;  /* section headline */
+  --text-h1:      24px;  /* Brand-Green heading (weight 600) */
+  --text-h2:      24px;  /* Ink section title (weight 400) */
+  --text-body-lg: 19px;  /* intro / feature-band body */
+  --text-body:    16px;  /* default body */
+  --text-small:   14px;  /* labels, button, metadata */
+  --text-micro:   13px;  /* captions, active float-label */
+
+  /* ---- Weights ---- */
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  /* ---- Line heights ---- */
+  --lh-compact: 1.2;   /* @kind other */ /* display, buttons */
+  --lh-normal:  1.5;   /* @kind other */ /* body */
+  --lh-body-lg: 1.75;  /* @kind other */ /* generous intro copy */
+
+  /* ---- Letter spacing ---- */
+  --track-tight:   -0.01em;   /* default — characteristic compression */
+  --track-display: -0.16px;   /* large display sizes */
+  --track-loose:    0.1em;    /* emphasized caps */
+  --track-looser:   0.15em;   /* uppercase labels / kickers */
+}
