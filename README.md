@@ -12,13 +12,13 @@ scripts.
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/Seahawk%20AI.dc.html>.
+Then open <http://localhost:8000/index.html>.
 
 ## What's in here
 
 | Path | What it is |
 | --- | --- |
-| `Seahawk AI.dc.html` | The page itself — all markup, styles and copy live here |
+| `index.html` | The page itself — all markup, styles and copy live here |
 | `support.js` | Claude Design runtime (generated — don't hand-edit) |
 | `_ds/seahawk-ai-design-system-.../` | The design system: tokens, styles, component bundle |
 | `_ds/.../tokens/*.css` | Colors, type, spacing, radii, shadows, motion |
@@ -27,7 +27,7 @@ Then open <http://localhost:8000/Seahawk%20AI.dc.html>.
 
 ### Editing
 
-- **Copy and layout** → `Seahawk AI.dc.html`
+- **Copy and layout** → `index.html`
 - **Brand values** (a green, a font size, a radius) → the matching file in
   `_ds/.../tokens/`. Change it once there and every surface follows.
 - **Never edit** `support.js` or `_ds_bundle.js` — both are generated.
@@ -66,11 +66,11 @@ git push            # when you're done
 ```
 
 Pull before you start and push when you stop, and you'll almost never collide.
-If you both edit `Seahawk AI.dc.html` at the same time you'll get a merge
+If you both edit `index.html` at the same time you'll get a merge
 conflict — the fix is to work on different sections, or take turns.
 
 ## Deploying
 
 GitHub Pages is free and reads straight from the repo: **Settings → Pages →
-Source: main branch**. Rename `Seahawk AI.dc.html` to `index.html` first so it
+Source: main branch**. Rename `index.html` to `index.html` first so it
 loads at the root URL.

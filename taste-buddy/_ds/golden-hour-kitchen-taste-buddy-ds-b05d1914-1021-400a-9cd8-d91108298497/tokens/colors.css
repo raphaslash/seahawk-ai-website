@@ -1,0 +1,48 @@
+:root{
+/* Base palette — strict */
+--butter-cream:#FAF3E4;
+--toasted-charcoal:#2A211B;
+--paprika:#D9542B;
+--sage-leaf:#7A9B76;
+--honey-butter:#E9A83A;
+--terracotta:#B8714F;
+/* Derived tints/shades (oklch-mixed from base, never new hues) */
+--cream-2:#F3E9D2; /* raised cream surface */
+--cream-3:#EBDDBF; /* pressed cream */
+--charcoal-2:#3B2F26; /* raised dark surface */
+--charcoal-3:#4C3E32; /* dark borders/dividers */
+--paprika-dark:#B84421; /* paprika hover/press */
+--paprika-tint:#F8E0D4; /* paprika wash */
+--sage-dark:#61805D;
+--sage-tint:#E6EDE3;
+--honey-tint:#FBEED3;
+--terracotta-tint:#F0E0D4;
+/* Ink */
+--ink-1:var(--toasted-charcoal);
+--ink-2:#5C4F43; /* secondary text on cream */
+--ink-3:#8A7A6A; /* muted text on cream */
+--ink-inverse:var(--butter-cream);
+--ink-inverse-2:#CDBFA8;
+/* Semantic surfaces */
+--surface-page:var(--butter-cream);
+--surface-card:#FFFDF7;
+--surface-raised:var(--cream-2);
+--surface-dark:var(--toasted-charcoal);
+--surface-dark-raised:var(--charcoal-2);
+/* Semantic accents */
+--accent:var(--paprika);
+--accent-hover:var(--paprika-dark);
+--fresh:var(--sage-leaf);
+--warm:var(--honey-butter);
+--earth:var(--terracotta);
+/* Match score scale (recipe match %) */
+--match-perfect:var(--paprika); /* 90-100 */
+--match-great:var(--honey-butter); /* 70-89 */
+--match-good:var(--terracotta); /* 50-69 */
+--match-stretch:var(--ink-3); /* <50 */
+/* Borders */
+--border-soft:#E5D8BE;
+--border-strong:#D3C3A2;
+--border-dark:var(--charcoal-3);
+--focus-ring:0 0 0 3px rgba(217,84,43,.35);
+}
