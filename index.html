@@ -289,7 +289,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
           </div>
           <div data-reveal="" data-lift="" style="transition-delay:160ms;background:var(--ivory);border-radius:var(--radius-card);padding:32px 28px 36px;box-shadow:var(--shadow-card);border-top:3px solid var(--green-primary);display:flex;flex-direction:column">
             <div style="font-family:var(--font-serif);font-size:34px;color:var(--green-light);line-height:1">03</div>
-            <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Prep for challenges</h3>
+            <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Prep for Challenges / Work on Projects</h3>
             <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--ink-soft)">We close by working on real competitions — the Presidential AI Challenge and other national contests. Teams, deadlines, and something to submit with our school's name on it.</p>
             <div style="margin-top:auto">
               <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Presidential AI Challenge</x-import>
@@ -384,7 +384,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
               <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600">R</div>
               <h3 style="margin:16px 0 4px;font-size:19px;font-weight:600;color:var(--green-primary)">Rayyan Rahman</h3>
               <div style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass)">Co-founder</div>
-              <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:var(--ink-soft)">Runs competitions and debate nights. The one who insists we ask whether we <em>should</em> before we ask whether we <em>can</em>.</p>
+              <p style="margin:14px 0 0;font-size:15px;line-height:1.65;color:var(--ink-soft)">Runs the project- and app-building side, and makes sure every member is actually moving their own project forward — always happy to help a student who's stuck.</p>
             </div>
           </div>
         </div>
@@ -779,32 +779,39 @@ const MEETINGS = [
   ]],
   ["2026-09-28", "", [
     ["build", "Prompting", "Role, context, constraints, examples. Five fixes you'll use on Tuesday.", "", ""],
-    ["build", "AI Chatbot Tools: Skills, Connectors, Plugins", "Wire a chatbot into your files, your apps, and a saved set of instructions.", "", ""]
+    ["build", "AI Chatbot Tools: Skills, Connectors, Plugins", "Wire a chatbot into your files, your apps, and a saved set of instructions.", "", ""],
+    ["build", "Pick Your Project", "Land on an idea worth a semester of Mondays — one line you could pitch in the hallway. ~30 minutes.", "", ""]
   ]],
   ["2026-10-19", "", [
-    ["learn", "Comparing AI Tools", "Which one to reach for: chat, notebook, image, code, research.", "", ""]
+    ["learn", "Comparing AI Tools", "Which one to reach for: chat, notebook, image, code, research.", "", ""],
+    ["build", "Plan the Build", "Scope it, list what it needs, and pick the tool you'll actually build it in. ~30 minutes.", "", ""]
   ]],
   ["2026-11-02", "", [
     ["build", "Artifacts", "Working pages, tools and mini-apps generated straight out of a chat.", "", ""],
     ["learn", "Comparing Models", "Claude, Gemini, ChatGPT and Grok on the same task. You judge the output.", "", ""],
-    ["learn", "Google AI Suite", "A dozen Google tools that talk to each other, and where they're ahead.", T.gemini, ""]
+    ["learn", "Google AI Suite", "A dozen Google tools that talk to each other, and where they're ahead.", T.gemini, ""],
+    ["build", "First Working Version", "Get something real running today, even if it's ugly. ~30 minutes with Artifacts.", "", ""]
   ]],
   ["2026-11-16", "", [
     ["build", "Gemini Notebook", "A pile of sources into a notebook you'd actually study from.", T.gemini, "📓"],
-    ["competition", "Presidential AI Challenge Kickoff", "The categories, the rules, and the January 20 deadline.", "", ""]
+    ["competition", "Presidential AI Challenge Kickoff", "The categories, the rules, and the January 20 deadline.", "", ""],
+    ["build", "Map What's Next", "Notebook your own project the way you just notebooked a pile of sources — what's built, what's next. ~30 minutes.", "", ""]
   ]],
   ["2026-11-30", "", [
     ["build", "Make Your Own Design Template", "Colors, type and layout, decided once and reused all year.", T.claude, ""],
     ["learn", "AI Ethics and Dilemmas", "Bias, copyright, deepfakes, jobs, surveillance. Every hard question in one sitting.", "", ""],
-    ["competition", "Presidential AI Challenge Teams and Ideas", "Teams formed, roles assigned, one-line pitch written before you leave.", "", ""]
+    ["competition", "Presidential AI Challenge Teams and Ideas", "Teams formed, roles assigned, one-line pitch written before you leave.", "", ""],
+    ["build", "Give It a Face", "Apply the design template you just made to your own project. ~30 minutes.", "", ""]
   ]],
   ["2026-12-14", "", [
     ["learn", "Claude Design", "Why a design tool with a real brand system beats a blank prompt box.", T.claude, ""],
-    ["competition", "Presidential AI Challenge Work Session", "Heads down on your entry. Officers float between teams.", "", ""]
+    ["competition", "Presidential AI Challenge Work Session", "Heads down on your entry. Officers float between teams.", "", ""],
+    ["build", "Polish in Claude Design", "Bring your project into Claude Design and give it the full treatment. ~30 minutes.", "", ""]
   ]],
   ["2027-01-04", "", [
     ["build", "Using Your Design: Posters and Flyers", "Take the template to print. Posters that actually go up in the hallway.", "", ""],
-    ["competition", "Presidential AI Challenge Final Push", "Last session before the January 20 deadline. Submit before you leave.", "", ""]
+    ["competition", "Presidential AI Challenge Final Push", "Last session before the January 20 deadline. Submit before you leave.", "", ""],
+    ["build", "Make Your Promo", "A poster or flyer for your own project, using the design skills from today. ~30 minutes.", "", ""]
   ]],
   ["2027-01-25", "", [
     ["learn", "Cowork", "No agenda. Bring your own thing and work next to people who'll help.", "", ""],
@@ -813,21 +820,25 @@ const MEETINGS = [
   ]],
   ["2027-02-08", "", [
     ["build", "Make an App", "Describe it, test it, fix it. Something that runs before the bell.", "", ""],
-    ["learn", "Deep Research", "Agents that read fifty sources and hand back a cited report.", "", ""]
+    ["learn", "Deep Research", "Agents that read fifty sources and hand back a cited report.", "", ""],
+    ["build", "Debug and Test", "Break it on purpose, then fix what breaks. ~30 minutes.", "", ""]
   ]],
   ["2027-02-22", "", [
     ["build", "Game Design", "A browser game start to finish: the loop, the art, the sound.", "", "🎮"],
-    ["competition", "Playtest Night", "Everyone plays everyone else's. Loudest room of the year.", "", ""]
+    ["competition", "Playtest Night", "Everyone plays everyone else's. Loudest room of the year.", "", ""],
+    ["build", "Get Feedback", "Hand it to another member and watch them use it without your help. ~30 minutes.", "", ""]
   ]],
   ["2027-03-08", "", [
     ["build", "Image Generation", "Prompting for pictures: style, composition, and fixing what comes back wrong.", "", ""],
     ["build", "Music Generation", "Write a track from a text description. Genre, mood, length, vocals.", "", ""],
-    ["build", "Video Generation", "Storyboard it, generate the shots, cut them together.", "", ""]
+    ["build", "Video Generation", "Storyboard it, generate the shots, cut them together.", "", ""],
+    ["build", "Add the Polish", "Generate the art, sound, or video your project's been missing. ~30 minutes.", "", ""]
   ]],
   ["2027-03-29", "", [
     ["learn", "AI in Every Industry", "Medicine, law, finance, sports — where a model is already trusted with real work.", "", ""],
     ["learn", "Agents and Automation", "What changes when it can act instead of answer.", "", ""],
-    ["competition", "Member Spotlight", "One member, ten minutes: the thing they made and how they made it.", "", ""]
+    ["competition", "Member Spotlight", "One member, ten minutes: the thing they made and how they made it.", "", ""],
+    ["build", "Automate Something", "Add one agent or automated step to your project. ~30 minutes.", "", ""]
   ]],
   ["2027-04-12", "", [
     ["learn", "US vs. China AI", "Two countries, two strategies, and what open weights changed.", "", ""],
