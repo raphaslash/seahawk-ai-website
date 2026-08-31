@@ -862,7 +862,7 @@ const MEETINGS = [
     ["competition", "Member Project Presentations", "Two minutes each, whole club watching, guests scoring.", "", ""],
     ["learn", "Next Year's Officers", "Named at the end. Then we go get food.", "", ""]
   ]],
-  ["2027-06-07", "", [
+  ["2027-06-07", "End of Year Party", [
     ["learn", "This Year in AI", "Ten months of releases in one sitting. What actually mattered.", "", ""],
     ["build", "Next Year Brainstorm", "You write the itinerary for the next crew.", "", ""],
     ["learn", "Officer Handoff", "Roles, logins, and everything that made this run.", "", ""]
@@ -1069,7 +1069,8 @@ class Component extends DCLogic {
       if (isNext) nextFound = true;
       const blocksRaw = (i >= 2 && i % 2 === 0 ? [NEWS] : []).concat(m[2] || []);
       const hasComp = blocksRaw.some((bk) => bk[0] === "competition" || bk[0] === "presidential");
-      const dark = i % 2 === 0;
+      const isParty = m[1] === "End of Year Party";
+      const dark = i % 2 === 0 || isParty;
       return {
         num: String(i + 1).padStart(2, "0"),
         iso: m[0],
@@ -1114,13 +1115,13 @@ class Component extends DCLogic {
         isNext: isNext ? "1" : "0",
         isNextFlag: isNext,
         year: String(y),
-        motif: MOTIFS[i % MOTIFS.length],
-        motifColor: dark ? "var(--green-light)" : hasComp ? "var(--brass)" : "var(--green-primary)",
+        motif: isParty ? "spark" : MOTIFS[i % MOTIFS.length],
+        motifColor: isParty ? "var(--brass-light)" : dark ? "var(--green-light)" : hasComp ? "var(--brass)" : "var(--green-primary)",
         flagTone: dark ? "brass" : "solid",
         cardStyle: {
           background: "var(--white)",
           borderRadius: "var(--radius-card)",
-          boxShadow: isNext ? "0 0 0 2px var(--brass), var(--shadow-card)" : "var(--shadow-card)",
+          boxShadow: isParty ? "0 0 0 3px var(--brass), var(--shadow-card)" : isNext ? "0 0 0 2px var(--brass), var(--shadow-card)" : "var(--shadow-card)",
           overflow: "hidden",
           display: "grid",
           gridTemplateColumns: "202px minmax(0,1fr)"
@@ -1134,7 +1135,7 @@ class Component extends DCLogic {
           padding: "32px 20px 32px 26px",
           background: dark ? "var(--green-deep)" : "var(--ivory)",
           borderRight: dark ? "none" : "1px solid " + (hasComp ? "var(--brass-light)" : "var(--hairline)"),
-          borderLeft: hasComp ? "4px solid var(--brass)" : "none",
+          borderLeft: hasComp || isParty ? "4px solid var(--brass)" : "none",
           opacity: past ? 0.62 : 1
         },
         numStyle: { fontSize: "11px", fontWeight: 800, letterSpacing: "0.2em", textTransform: "uppercase", color: dark ? "var(--brass-light)" : hasComp ? "#8a6636" : "var(--ink-soft)" },
