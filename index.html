@@ -471,11 +471,11 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
       </div>
       <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
         <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Itinerary · 2026–2027</x-import>
-        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Eighteen Mondays.</h1>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Seventeen Mondays.</h1>
         <p style="margin:18px 0 0;max-width:56ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">Every other Monday, 3:05 PM, in the lecture hall. Every meeting runs a few short sessions, so nobody sits through an hour of one thing. Dates skip school holidays, so a few land three weeks apart. Topics are subject to change.</p>
         <div style="margin-top:34px;display:flex;flex-wrap:wrap;gap:26px;align-items:center">
           <div style="flex:1;min-width:260px">
-            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--on-dark-soft);margin-bottom:8px"><span>Season progress</span><span>{{ doneCount }} of 18 held</span></div>
+            <div style="display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--on-dark-soft);margin-bottom:8px"><span>Season progress</span><span>{{ doneCount }} of {{ meetingTotal }} held</span></div>
             <div style="height:6px;border-radius:50px;background:rgba(255,255,255,0.16);overflow:hidden">
               <div style="{{ progressStyle }}"></div>
             </div>
@@ -895,14 +895,9 @@ const MEETINGS = [
     ["build", "Build Your Portfolio Page", "One page for everything you made this year.", "", ""],
     ["build", "Demo Day Prep", "Two minutes, no slides, honest feedback. Run it twice.", "", ""]
   ]],
-  ["2027-05-24", "Demo Day", [
-    ["competition", "Member Project Presentations", "Two minutes each, whole club watching, guests scoring.", "", ""],
-    ["learn", "Next Year's Officers", "Named at the end. Then we go get food.", "", ""]
-  ]],
-  ["2027-06-07", "End of Year Party", [
-    ["learn", "This Year in AI", "Ten months of releases in one sitting. What actually mattered.", "", ""],
-    ["build", "Next Year Brainstorm", "You write the itinerary for the next crew.", "", ""],
-    ["learn", "Officer Handoff", "Roles, logins, and everything that made this run.", "", ""]
+  ["2027-05-24", "End of Year Party", [
+    ["competition", "Member Project Presentations", "Everyone shows what they made this year. Two minutes each, whole club watching.", "", ""],
+    ["learn", "The Party", "Food, music, and celebrating everything the club built and accomplished.", "", "🎉"]
   ]]
 ];
 
@@ -1103,7 +1098,7 @@ class Component extends DCLogic {
       const past = dt < now;
       const isNext = !past && !nextFound;
       if (isNext) nextFound = true;
-      const blocksRaw = (i >= 2 && i % 2 === 0 ? [NEWS] : []).concat(m[2] || []);
+      const blocksRaw = (i >= 2 && i % 2 === 0 && m[1] !== "End of Year Party" ? [NEWS] : []).concat(m[2] || []);
       const hasComp = blocksRaw.some((bk) => bk[0] === "competition" || bk[0] === "presidential");
       const isParty = m[1] === "End of Year Party";
       const dark = i % 2 === 0 || isParty;
@@ -1192,7 +1187,7 @@ class Component extends DCLogic {
     const showFilters = this.props.showTrackFilters !== false;
 
     const FILTER_KEYS = ["all", "presidential", "project", "competition"];
-    const FILTER_LABELS = { all: "All 18 meetings", presidential: "Presidential Challenge", project: "Project work", competition: "Competitions" };
+    const FILTER_LABELS = { all: "All 17 meetings", presidential: "Presidential Challenge", project: "Project work", competition: "Competitions" };
     const trackFilters = FILTER_KEYS.map((k) => ({
       key: k,
       label: FILTER_LABELS[k],
@@ -1283,6 +1278,7 @@ class Component extends DCLogic {
       shownResources: shownResources,
       products: products,
       doneCount: done,
+      meetingTotal: all.length,
       nextTitle: next.blocks.map((b) => b.title).slice(0, 2).join(" · "),
       nextDate: next.weekday + ", " + next.longDate,
       nextShort: next.shortDate,
