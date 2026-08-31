@@ -1,18 +1,31 @@
 # Seahawk AI — Club Website
 
-The Seahawk AI club site, handed off from Claude Design into a real project folder.
+## 🌐 The live site
 
-## Run it
+**https://raphaslash.github.io/seahawk-ai-website/**
 
-No build step, no dependencies. It's static HTML — but it must be served over
-HTTP (not opened as a `file://` path), or the browser will block the design-system
-scripts.
+Taste Buddy lives at
+**https://raphaslash.github.io/seahawk-ai-website/taste-buddy/**
+
+Those are the real links — open them from any device, no setup and no account.
+Every push to `main` redeploys automatically in about a minute.
+
+---
+
+## Running it locally (only if you're editing it)
+
+You do **not** need this just to look at the site — use the link above.
+
+No build step, no dependencies. It's static HTML, but it must be served over
+HTTP, not opened as a `file://` path, or the browser will block the
+design-system scripts.
 
 ```bash
 python3 -m http.server 8000
 ```
 
-Then open <http://localhost:8000/index.html>.
+Then open `http://localhost:8000` — but note that address only works on the
+machine running that command. It is not a link you can send anyone.
 
 ## What's in here
 
