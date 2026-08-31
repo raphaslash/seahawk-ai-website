@@ -255,7 +255,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
           <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="accent" hint-size="auto,18px">Our mission</x-import>
         </div>
         <h2 data-reveal="" style="margin:20px 0 0;transition-delay:60ms;font-family:var(--font-serif);font-size:clamp(32px,4vw,52px);font-weight:500;line-height:1.18;letter-spacing:var(--track-display);color:var(--green-primary)">The students who learn to steer AI won't be the ones replaced by it.</h2>
-        <p data-reveal="" style="margin:28px auto 0;transition-delay:120ms;max-width:66ch;font-size:19px;line-height:1.8;color:var(--ink)">High school is where that head start gets built. Seahawk AI exists so students at every level — coders and non-coders alike — get real hands on real tools: prompting, generating, designing, automating, and building things people actually use. We learn out loud, argue about the hard parts, and leave every meeting having made something.</p>
+        <p data-reveal="" style="margin:28px auto 0;transition-delay:120ms;max-width:66ch;font-size:19px;line-height:1.8;color:var(--ink)">High school is where that head start gets built. Seahawk AI exists so students get real hands on real tools: prompting, generating, designing, automating, and building things people actually use. No coding background needed — you leave every meeting having made something.</p>
         <div data-reveal="" style="margin-top:44px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap;transition-delay:180ms">
           <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">Hands-on every meeting</x-import>
           <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="accent" hint-size="auto,26px">No experience needed</x-import>
@@ -356,7 +356,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
       </div>
       <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
         <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">The founders</x-import>
-        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,66px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Two students, one bet<br>on what comes next.</h1>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,66px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Started by students.<br>Run by students.</h1>
       </div>
     </section>
 
@@ -532,7 +532,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
       </div>
       <div data-m="wrap" style="position:relative;max-width:1240px;margin:0 auto">
         <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="ondark" hint-size="auto,18px">Resources</x-import>
-        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Prompts &amp; skills,<br>ready to steal.</h1>
+        <h1 style="margin:16px 0 0;font-family:var(--font-serif);font-size:clamp(38px,5vw,64px);font-weight:600;line-height:1.06;letter-spacing:var(--track-display)">Prompts &amp; skills,<br>ready to use.</h1>
         <p style="margin:18px 0 0;max-width:58ch;font-size:19px;line-height:1.7;color:var(--on-dark-soft)">The club's shared library. Copy anything, change anything. If you build something better, it goes in here.</p>
       </div>
     </section>
@@ -621,7 +621,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
             <div data-reveal="" data-lift="" style="{{ p.cardStyle }}">
               <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
                 <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ p.tone }}" hint-size="auto,26px">{{ p.kind }}</x-import>
-                <span style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto">Slot {{ p.n }}</span>
+                
               </div>
               <h3 style="margin:0 0 10px;font-family:var(--font-serif);font-size:23px;font-weight:500;color:var(--green-primary)">{{ p.title }}</h3>
               <p style="margin:0 0 8px;font-size:15px;line-height:1.65;color:var(--ink-soft)">{{ p.desc }}</p>
@@ -634,7 +634,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
         </div>
 
         <div data-reveal="" style="margin-top:34px">
-          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="mint" title="Four open slots" hint-size="100%,92px">Every card is editable — drop in the real title, who built it, what it does, and the link. Build something at a meeting and it lands here.</x-import>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Callout" tone="mint" title="More on the way" hint-size="100%,92px">Projects go up as members finish them, with the builder's name on the card.</x-import>
         </div>
       </div>
     </section>
@@ -975,12 +975,10 @@ const RESOURCES = [
 ];
 
 const PRODUCTS = [
-  { kind: "Web app", tone: "brass", title: "Taste Buddy", desc: "Tell it what is in your pantry and it matches real recipes against what you already have. Includes a taste quiz that learns what you actually like.", by: "Raphael Osinovsky", href: "./taste-buddy/", cta: "Open Taste Buddy" },
-  { kind: "Prototype", tone: "brass", title: "Seahawk Club Hub", desc: "Browse every South Lakes club, compare Monday-through-Friday schedules, and get matched to what fits your week. A visual preview of the full design and real club data — buttons don't do anything yet, since the real version needs a live server this site can't host.", by: "Rayyan Rahman", href: "./club-hub/", cta: "Open Seahawk Club Hub" },
-  { kind: "Open slot", tone: "mint", title: "Your web app goes here", desc: "Something with a real URL that a friend could open on their phone right now. Say what problem it solves.", by: "Add a name" },
-  { kind: "Open slot", tone: "mint", title: "Your tool goes here", desc: "A prompt library, a script, an automation — anything that saves somebody time. Add who built it and why.", by: "Add a name" },
-  { kind: "Open slot", tone: "mint", title: "Your demo goes here", desc: "A video walkthrough or an experiment that didn't quite become a product but was worth showing.", by: "Add a name" },
-  { kind: "Open slot", tone: "mint", title: "Your experiment goes here", desc: "The one that broke in an interesting way. Write down what you learned — that counts too.", by: "Add a name" }
+  { kind: "Website", tone: "brass", title: "Taste Buddy", desc: "Tell it what is in your pantry and it matches real recipes against what you already have. Includes a taste quiz that learns what you actually like.", by: "Raphael Osinovsky", href: "./taste-buddy/", cta: "Open Taste Buddy" },
+  { kind: "Website", tone: "brass", title: "Seahawk Club Hub", desc: "Browse every South Lakes club, compare Monday-through-Friday schedules, and get matched to what fits your week. A visual preview of the full design and real club data — buttons don't do anything yet, since the real version needs a live server this site can't host.", by: "Rayyan Rahman", href: "./club-hub/", cta: "Open Seahawk Club Hub" },
+  { kind: "Coming soon", tone: "mint", title: "Member projects", desc: "Apps, tools and games built in meetings land here as they're finished.", by: "The club, all year", href: "#itinerary", cta: "See the itinerary", soon: true },
+  { kind: "Coming soon", tone: "mint", title: "Your project", desc: "Build something at a meeting and it goes up here with your name on it.", by: "Maybe you", href: "#join", cta: "Join the club", soon: true }
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -1207,7 +1205,7 @@ class Component extends DCLogic {
       n: String(i + 2),
       href: p.href || "#products",
       cta: p.cta || "Add link",
-      cardStyle: p.href ? {
+      cardStyle: (p.href && !p.soon) ? {
         background: "var(--white)",
         border: "1px solid var(--brass-light)",
         borderRadius: "var(--radius-card)",
