@@ -47,6 +47,9 @@ a:hover { color: var(--green-primary); }
 @keyframes sh-dash { to { stroke-dashoffset: -220; } }
 [data-reveal] { transition: opacity 0.8s cubic-bezier(.25,.46,.45,.94), transform 0.8s cubic-bezier(.25,.46,.45,.94); }
 [data-reveal].sh-out { opacity: 0; transform: translateY(26px); }
+/* Project track. The design system is greens + brass only, so this blue is a
+   deliberate exception scoped to this one pill. */
+[data-track="project"] > * > span { background: rgba(47,111,168,0.13) !important; color: #23557f !important; }
 [data-nav] { position: relative; background: transparent; border: 0; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: rgba(255,255,255,0.62); padding: 9px 16px; border-radius: 50px; transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
 [data-nav]:hover { color: #fff; background: rgba(255,255,255,0.09); }
 [data-nav]:active { transform: scale(0.95); }
@@ -493,7 +496,9 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
                         <span style="font-size:19px;line-height:1">{{ b.icon }}</span>
                       </sc-if>
                       <sc-if value="{{ b.hasPill }}">
-                        <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ b.pillTone }}" hint-size="auto,26px">{{ b.pillLabel }}</x-import>
+                        <span data-track="{{ b.typeKey }}" style="display:inline-flex">
+                          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="{{ b.pillTone }}" hint-size="auto,26px">{{ b.pillLabel }}</x-import>
+                        </span>
                       </sc-if>
                       <sc-if value="{{ b.hasLogo }}">
                         <span style="{{ b.logoStyle }}"></span>
@@ -757,7 +762,9 @@ const PAGES = ["home", "founders", "itinerary", "resources", "products", "join"]
 const TRACKS = {
   standard: { key: "standard", pillLabel: "", pillTone: "mint" },
   news: { key: "news", pillLabel: "News", pillTone: "mint" },
-  competition: { key: "competition", pillLabel: "★ Competition", pillTone: "brass" }
+  presidential: { key: "presidential", pillLabel: "★ Presidential Challenge", pillTone: "brass" },
+  competition: { key: "competition", pillLabel: "★ Competition", pillTone: "brass" },
+  project: { key: "project", pillLabel: "◆ Project", pillTone: "mint" }
 };
 
 const T = {
@@ -781,38 +788,38 @@ const MEETINGS = [
   ["2026-09-28", "", [
     ["build", "Prompting", "Role, context, constraints, examples. Five fixes you'll use on Tuesday.", "", ""],
     ["build", "AI Chatbot Tools: Skills, Connectors, Plugins", "Wire a chatbot into your files, your apps, and a saved set of instructions.", "", ""],
-    ["build", "Pick Your Project", "Land on an idea worth a semester of Mondays — one line you could pitch in the hallway. ~30 minutes.", "", ""]
+    ["project", "Pick Your Project", "Land on an idea worth a semester of Mondays — one line you could pitch in the hallway. ~30 minutes.", "", ""]
   ]],
   ["2026-10-19", "", [
     ["learn", "Comparing AI Tools", "Which one to reach for: chat, notebook, image, code, research.", "", ""],
-    ["build", "Plan the Build", "Scope it, list what it needs, and pick the tool you'll actually build it in. ~30 minutes.", "", ""]
+    ["project", "Plan the Build", "Scope it, list what it needs, and pick the tool you'll actually build it in. ~30 minutes.", "", ""]
   ]],
   ["2026-11-02", "", [
     ["build", "Artifacts", "Working pages, tools and mini-apps generated straight out of a chat.", "", ""],
     ["learn", "Comparing Models", "Claude, Gemini, ChatGPT and Grok on the same task. You judge the output.", "", ""],
     ["learn", "Google AI Suite", "A dozen Google tools that talk to each other, and where they're ahead.", T.gemini, ""],
-    ["build", "First Working Version", "Get something real running today, even if it's ugly. ~30 minutes with Artifacts.", "", ""]
+    ["project", "First Working Version", "Get something real running today, even if it's ugly. ~30 minutes with Artifacts.", "", ""]
   ]],
   ["2026-11-16", "", [
     ["build", "Gemini Notebook", "A pile of sources into a notebook you'd actually study from.", T.gemini, "📓"],
-    ["competition", "Presidential AI Challenge Kickoff", "The categories, the rules, and the January 20 deadline.", "", ""],
-    ["build", "Map What's Next", "Notebook your own project the way you just notebooked a pile of sources — what's built, what's next. ~30 minutes.", "", ""]
+    ["presidential", "Presidential AI Challenge Kickoff", "The categories, the rules, and the January 20 deadline.", "", ""],
+    ["project", "Map What's Next", "Take stock: what's built, what's broken, and what the next few Mondays actually go toward. ~30 minutes.", "", ""]
   ]],
   ["2026-11-30", "", [
     ["build", "Make Your Own Design Template", "Colors, type and layout, decided once and reused all year.", T.claude, ""],
     ["learn", "AI Ethics and Dilemmas", "Bias, copyright, deepfakes, jobs, surveillance. Every hard question in one sitting.", "", ""],
-    ["competition", "Presidential AI Challenge Teams and Ideas", "Teams formed, roles assigned, one-line pitch written before you leave.", "", ""],
-    ["build", "Give It a Face", "Apply the design template you just made to your own project. ~30 minutes.", "", ""]
+    ["presidential", "Presidential AI Challenge Teams and Ideas", "Teams formed, roles assigned, one-line pitch written before you leave.", "", ""],
+    ["project", "Give It a Face", "Apply the design template you just made to your own project. ~30 minutes.", "", ""]
   ]],
   ["2026-12-14", "", [
     ["learn", "Claude Design", "Why a design tool with a real brand system beats a blank prompt box.", T.claude, ""],
-    ["competition", "Presidential AI Challenge Work Session", "Heads down on your entry. Officers float between teams.", "", ""],
-    ["build", "Polish in Claude Design", "Bring your project into Claude Design and give it the full treatment. ~30 minutes.", "", ""]
+    ["presidential", "Presidential AI Challenge Work Session", "Heads down on your entry. Officers float between teams.", "", ""],
+    ["project", "Polish in Claude Design", "Bring your project into Claude Design and give it the full treatment. ~30 minutes.", "", ""]
   ]],
   ["2027-01-04", "", [
     ["build", "Using Your Design: Posters and Flyers", "Take the template to print. Posters that actually go up in the hallway.", "", ""],
-    ["competition", "Presidential AI Challenge Final Push", "Last session before the January 20 deadline. Submit before you leave.", "", ""],
-    ["build", "Make Your Promo", "A poster or flyer for your own project, using the design skills from today. ~30 minutes.", "", ""]
+    ["presidential", "Presidential AI Challenge Final Push", "Last session before the January 20 deadline. Submit before you leave.", "", ""],
+    ["project", "Make Your Promo", "A poster or flyer for your own project, using the design skills from today. ~30 minutes.", "", ""]
   ]],
   ["2027-01-25", "", [
     ["learn", "Cowork", "No agenda. Bring your own thing and work next to people who'll help.", "", ""],
@@ -822,41 +829,39 @@ const MEETINGS = [
   ["2027-02-08", "", [
     ["build", "Make an App", "Describe it, test it, fix it. Something that runs before the bell.", "", ""],
     ["learn", "Deep Research", "Agents that read fifty sources and hand back a cited report.", "", ""],
-    ["build", "Debug and Test", "Break it on purpose, then fix what breaks. ~30 minutes.", "", ""]
+    ["project", "Debug and Test", "Break it on purpose, then fix what breaks. ~30 minutes.", "", ""]
   ]],
   ["2027-02-22", "", [
     ["build", "Game Design", "A browser game start to finish: the loop, the art, the sound.", "", "🎮"],
     ["competition", "Playtest Night", "Everyone plays everyone else's. Loudest room of the year.", "", ""],
-    ["build", "Get Feedback", "Hand it to another member and watch them use it without your help. ~30 minutes.", "", ""]
+    ["project", "Get Feedback", "Hand it to another member and watch them use it without your help. ~30 minutes.", "", ""]
   ]],
   ["2027-03-08", "", [
     ["build", "Image Generation", "Prompting for pictures: style, composition, and fixing what comes back wrong.", "", ""],
     ["build", "Music Generation", "Write a track from a text description. Genre, mood, length, vocals.", "", ""],
     ["build", "Video Generation", "Storyboard it, generate the shots, cut them together.", "", ""],
-    ["build", "Add the Polish", "Generate the art, sound, or video your project's been missing. ~30 minutes.", "", ""]
+    ["project", "Add the Polish", "Generate the art, sound, or video your project's been missing. ~30 minutes.", "", ""]
   ]],
   ["2027-03-29", "", [
     ["learn", "AI in Every Industry", "Medicine, law, finance, sports — where a model is already trusted with real work.", "", ""],
     ["learn", "Agents and Automation", "What changes when it can act instead of answer.", "", ""],
     ["competition", "Member Spotlight", "One member, ten minutes: the thing they made and how they made it.", "", ""],
-    ["build", "Automate Something", "Add one agent or automated step to your project. ~30 minutes.", "", ""]
+    ["learn", "US vs. China AI", "Two countries, two strategies, and what open weights changed.", "", ""]
   ]],
   ["2027-04-12", "", [
-    ["learn", "US vs. China AI", "Two countries, two strategies, and what open weights changed.", "", ""],
-    ["learn", "Debate: Who Answers When It's Wrong", "Accountability, bias, and whose work trained it. Pick a side before you sit down.", "", "⚖️"],
-    ["build", "Build Your Portfolio Page", "One page for everything you made this year.", "", ""]
+    ["learn", "Debate: Who Answers When It's Wrong", "Accountability, bias, and whose work trained it. Pick a side before you sit down.", "", "⚖️"]
   ]],
   ["2027-04-26", "", [
     ["learn", "AI, College, and Careers", "Applications, majors, and where this helps you or hurts you.", "", ""],
     ["build", "Publish Your Project", "Your name on it and a URL you can text to someone.", "", ""]
   ]],
   ["2027-05-10", "", [
-    ["build", "Demo Day Posters", "One poster per project, designed and printed.", "", ""],
-    ["build", "Demo Day Prep", "Two minutes, no slides, honest feedback. Run it twice.", "", ""]
+    ["build", "Build Your Portfolio Page", "One page for everything you made this year.", "", ""],
+    ["project", "Practice Your Presentation", "Two minutes, no slides, honest feedback. Run it twice.", "", ""]
   ]],
   ["2027-05-24", "Demo Day", [
     ["competition", "Member Project Presentations", "Two minutes each, whole club watching, guests scoring.", "", ""],
-    ["competition", "Next Year's Officers", "Named at the end. Then we go get food.", "", ""]
+    ["learn", "Next Year's Officers", "Named at the end. Then we go get food.", "", ""]
   ]],
   ["2027-06-07", "", [
     ["learn", "This Year in AI", "Ten months of releases in one sitting. What actually mattered.", "", ""],
@@ -1064,7 +1069,7 @@ class Component extends DCLogic {
       const isNext = !past && !nextFound;
       if (isNext) nextFound = true;
       const blocksRaw = (i >= 2 && i % 2 === 0 ? [NEWS] : []).concat(m[2] || []);
-      const hasComp = blocksRaw.some((bk) => bk[0] === "competition");
+      const hasComp = blocksRaw.some((bk) => bk[0] === "competition" || bk[0] === "presidential");
       const dark = i % 2 === 0;
       return {
         num: String(i + 1).padStart(2, "0"),
@@ -1150,8 +1155,8 @@ class Component extends DCLogic {
     const next = all.filter((m) => m.isNext === "1")[0] || all[all.length - 1];
     const showFilters = this.props.showTrackFilters !== false;
 
-    const FILTER_KEYS = ["all", "competition"];
-    const FILTER_LABELS = { all: "All 18 meetings", competition: "Competition dates" };
+    const FILTER_KEYS = ["all", "presidential", "project", "competition"];
+    const FILTER_LABELS = { all: "All 18 meetings", presidential: "Presidential Challenge", project: "Project work", competition: "Competitions" };
     const trackFilters = FILTER_KEYS.map((k) => ({
       key: k,
       label: FILTER_LABELS[k],
