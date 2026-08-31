@@ -51,10 +51,10 @@
 </div>
 <div class="sticky top-0 z-50 bg-white border-b border-surface-border">
   <div class="max-w-[1200px] mx-auto flex gap-1 px-4 py-2 overflow-x-auto">
-    <button class="preview-nav-btn active shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" onclick="showTab('home')">Home</button>
-    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" onclick="showTab('directory')">Club Directory</button>
-    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" onclick="showTab('detail')">Club Detail</button>
-    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" onclick="showTab('schedule')">Weekly Schedule</button>
+    <button class="preview-nav-btn active shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" data-tab="home" onclick="showTab('home')">Home</button>
+    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" data-tab="directory" onclick="showTab('directory')">Club Directory</button>
+    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" data-tab="detail" onclick="showTab('detail')">Club Detail</button>
+    <button class="preview-nav-btn shrink-0 px-4 py-1.5 rounded-md text-sm font-medium border border-surface-borderStrong" data-tab="schedule" onclick="showTab('schedule')">Weekly Schedule</button>
   </div>
 </div>
 
@@ -68,7 +68,7 @@
         <h1 class="mt-5 font-display text-4xl sm:text-5xl font-bold leading-[1.08] text-white">Every club, every meeting, one Seahawk Club Hub.</h1>
         <p class="mt-5 max-w-xl text-lg leading-relaxed text-white/65">Discover clubs, compare schedules, message leadership, and get matched to activities that actually fit your week — built for the South Lakes community, and architected for every FCPS high school.</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <button class="rounded-sm bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 font-semibold text-sm shadow-soft">Explore Clubs →</button>
+          <button class="rounded-sm bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 font-semibold text-sm shadow-soft" onclick="showTab('directory')">Explore Clubs →</button>
           <button class="rounded-sm bg-white text-navy-900 border border-white/20 px-6 py-3 font-semibold text-sm shadow-soft">Find My Club Match</button>
         </div>
         <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/50">
@@ -252,11 +252,15 @@
 </footer>
 
 <script>
+function toggleMark(btn, off, on) {
+  const active = btn.classList.toggle('bg-navy-900');
+  btn.classList.toggle('text-white', active);
+  btn.textContent = active ? on : off;
+}
 function showTab(name) {
   document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
   document.getElementById('tab-' + name).classList.add('active');
-  document.querySelectorAll('.preview-nav-btn').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
+  document.querySelectorAll('.preview-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   window.scrollTo({top:0, behavior:'instant'});
 }
 
@@ -292,10 +296,10 @@ function clubCard(c) {
         <p class="text-xs text-ink-400">Sponsor: ${c.sponsor}</p>
         <div class="mt-auto flex items-center justify-between pt-2">
           <div class="flex gap-2">
-            <button class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-surface-borderStrong">⏱ Interested</button>
-            <button class="h-8 w-8 rounded-sm border border-surface-borderStrong flex items-center justify-center">🔖</button>
+            <button class="text-xs font-semibold px-3 py-1.5 rounded-sm border border-surface-borderStrong" onclick="toggleMark(this,'⏱ Interested','✓ Interested')">⏱ Interested</button>
+            <button class="h-8 w-8 rounded-sm border border-surface-borderStrong flex items-center justify-center" onclick="toggleMark(this,'🔖','✅')">🔖</button>
           </div>
-          <a class="text-xs font-semibold text-action-600">View Club →</a>
+          <a class="text-xs font-semibold text-action-600 cursor-pointer" onclick="showTab('detail')">View Club →</a>
         </div>
       </div>
     </div>`;

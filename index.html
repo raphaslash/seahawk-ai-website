@@ -298,8 +298,11 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
             <div style="font-family:var(--font-serif);font-size:34px;color:var(--green-light);line-height:1">03</div>
             <h3 style="margin:14px 0 10px;font-size:21px;font-weight:600;color:var(--green-primary)">Prep for Challenges / Work on Projects</h3>
             <p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:var(--ink-soft)">We close by working on real competitions — the Presidential AI Challenge and other national contests. Teams, deadlines, and something to submit with our school's name on it.</p>
-            <div style="margin-top:auto">
+            <div style="margin-top:auto;display:flex;gap:8px;flex-wrap:wrap">
               <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="brass" hint-size="auto,26px">★ Presidential AI Challenge</x-import>
+              <span data-track="project" style="display:inline-flex">
+                <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Pill" tone="mint" hint-size="auto,26px">◆ Project</x-import>
+              </span>
             </div>
           </div>
         </div>
@@ -401,9 +404,38 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
     <section style="background:var(--ceramic);padding:82px 28px">
       <div data-m="wrap" style="max-width:1240px;margin:0 auto">
         <div data-reveal="" style="text-align:center;margin-bottom:44px">
-          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="accent" hint-size="auto,18px">The officers</x-import>
+          <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Kicker" tone="accent" hint-size="auto,18px">Officers &amp; sponsors</x-import>
           <h2 style="margin:14px 0 0;font-family:var(--font-serif);font-size:40px;font-weight:500;letter-spacing:var(--track-display);color:var(--green-primary)">The people who make it run</h2>
         </div>
+        <div data-m="os-cols" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:34px;align-items:start">
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px">Sponsors</div>
+            <div style="display:grid;gap:14px">
+            <div data-reveal="" style="transition-delay:0ms;background:var(--white);border-radius:var(--radius-card);padding:18px 20px;box-shadow:var(--shadow-card);display:flex;align-items:center;gap:14px">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600;flex:0 0 auto">R</div>
+              <div>
+                <div style="font-size:17px;font-weight:600;color:var(--green-primary)">Dr. Rodriguez</div>
+                <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass);margin-top:2px">External sponsor</div>
+              </div>
+            </div>
+            <div data-reveal="" style="transition-delay:60ms;background:var(--white);border-radius:var(--radius-card);padding:18px 20px;box-shadow:var(--shadow-card);display:flex;align-items:center;gap:14px">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600;flex:0 0 auto">M</div>
+              <div>
+                <div style="font-size:17px;font-weight:600;color:var(--green-primary)">Dr. McCue</div>
+                <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass);margin-top:2px">Sponsor</div>
+              </div>
+            </div>
+            <div data-reveal="" style="transition-delay:120ms;background:var(--white);border-radius:var(--radius-card);padding:18px 20px;box-shadow:var(--shadow-card);display:flex;align-items:center;gap:14px">
+              <div style="width:44px;height:44px;border-radius:50%;background:var(--green-light);display:grid;place-items:center;font-family:var(--font-serif);font-size:20px;color:var(--green-primary);font-weight:600;flex:0 0 auto">B</div>
+              <div>
+                <div style="font-size:17px;font-weight:600;color:var(--green-primary)">Ms. Braxton</div>
+                <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass);margin-top:2px">Internal sponsor</div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 14px">Officers</div>
         <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px">
           <div data-reveal="" data-lift="" style="transition-delay:0ms;background:var(--white);border-radius:var(--radius-card);padding:26px;box-shadow:var(--shadow-card)">
             <img src="assets/officers/joseph.jpg" alt="Joseph Ankomah" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;transition:var(--fade-image)">
@@ -419,6 +451,8 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
             <img src="assets/officers/alex.jpg" alt="Alex Castillo-Vasquez" style="width:64px;height:64px;border-radius:50%;object-fit:cover;display:block;transition:var(--fade-image)">
             <h3 style="margin:16px 0 4px;font-size:19px;font-weight:600;color:var(--green-primary)">Alex Castillo-Vasquez</h3>
             <div style="font-size:13px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--brass)">Logistics</div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
@@ -627,7 +661,9 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
               <p style="margin:0 0 8px;font-size:15px;line-height:1.65;color:var(--ink-soft)">{{ p.desc }}</p>
               <p style="margin:0 0 20px;font-size:14px;line-height:1.6;color:var(--ink-soft)"><strong style="color:var(--ink)">Built by:</strong> {{ p.by }}</p>
               <div style="margin-top:auto">
-                <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outline" size="sm" as="a" href="{{ p.href }}" hint-size="auto,38px">{{ p.cta }}</x-import>
+                <sc-if value="{{ p.hasCta }}">
+                  <x-import component-from-global-scope="SeahawkAIDesignSystem_2e2732.Button" variant="outline" size="sm" as="a" href="{{ p.href }}" hint-size="auto,38px">{{ p.cta }}</x-import>
+                </sc-if>
               </div>
             </div>
           </sc-for>
@@ -976,9 +1012,9 @@ const RESOURCES = [
 
 const PRODUCTS = [
   { kind: "Website", tone: "brass", title: "Taste Buddy", desc: "Tell it what is in your pantry and it matches real recipes against what you already have. Includes a taste quiz that learns what you actually like.", by: "Raphael Osinovsky", href: "./taste-buddy/", cta: "Open Taste Buddy" },
-  { kind: "Website", tone: "brass", title: "Seahawk Club Hub", desc: "Browse every South Lakes club, compare Monday-through-Friday schedules, and get matched to what fits your week. A visual preview of the full design and real club data — buttons don't do anything yet, since the real version needs a live server this site can't host.", by: "Rayyan Rahman", href: "./club-hub/", cta: "Open Seahawk Club Hub" },
-  { kind: "Coming soon", tone: "mint", title: "Member projects", desc: "Apps, tools and games built in meetings land here as they're finished.", by: "The club, all year", href: "#itinerary", cta: "See the itinerary", soon: true },
-  { kind: "Coming soon", tone: "mint", title: "Your project", desc: "Build something at a meeting and it goes up here with your name on it.", by: "Maybe you", href: "#join", cta: "Join the club", soon: true }
+  { kind: "Website", tone: "brass", title: "Seahawk Club Hub", desc: "Browse every South Lakes club, compare Monday-through-Friday schedules, and get matched to what fits your week. A working preview with real club data — accounts and live matching come with the full version.", by: "Rayyan Rahman", href: "./club-hub/", cta: "Open Seahawk Club Hub" },
+  { kind: "Coming soon", tone: "mint", title: "Member projects", desc: "Apps, tools and games built in meetings land here as they're finished.", by: "The club, all year", soon: true },
+  { kind: "Coming soon", tone: "mint", title: "Your project", desc: "Built something already? It can go up today.", by: "Maybe you", href: "mailto:1807776@fcpsschools.net", cta: "Send it in", soon: true }
 ];
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -1205,6 +1241,7 @@ class Component extends DCLogic {
       n: String(i + 2),
       href: p.href || "#products",
       cta: p.cta || "Add link",
+      hasCta: !!p.href,
       cardStyle: (p.href && !p.soon) ? {
         background: "var(--white)",
         border: "1px solid var(--brass-light)",
