@@ -78,6 +78,7 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
 
 /* ---- Mobile only. Desktop layout above 900px is untouched. ---- */
 @media (max-width: 900px) {
+  [data-m="os-cols"] { grid-template-columns: 1fr !important; }
   html, body { overflow-x: hidden; }
 
   /* header: one compact row — mark + wordmark, nav as a scroll rail beneath */
