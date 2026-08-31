@@ -2,10 +2,10 @@
 
 ## 🌐 The live site
 
-**https://raphaslash.github.io/seahawk-ai-website/**
+**https://seahawkai.github.io/**
 
 Taste Buddy lives at
-**https://raphaslash.github.io/seahawk-ai-website/taste-buddy/**
+**https://seahawkai.github.io/taste-buddy/**
 
 Those are the real links — open them from any device, no setup and no account.
 Every push to `main` redeploys automatically in about a minute.
@@ -57,7 +57,7 @@ can't edit the same Claude Design project on Pro, but they can both push to a re
 **Owner, once:**
 
 ```bash
-git remote add origin https://github.com/<your-username>/seahawk-ai-website.git
+git remote add origin https://github.com/seahawkai/seahawkai.github.io.git
 git push -u origin main
 ```
 
@@ -67,7 +67,7 @@ collaborator's GitHub username.
 **Collaborator:**
 
 ```bash
-git clone https://github.com/<your-username>/seahawk-ai-website.git
+git clone https://github.com/seahawkai/seahawkai.github.io.git
 ```
 
 **Both of you, every session:**
