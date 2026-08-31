@@ -79,10 +79,11 @@ pre { margin: 0; font-family: ui-monospace, "SF Mono", Menlo, monospace; }
   header > div > button img { width: 28px !important; height: 28px !important; }
   header > div > button { padding: 2px 6px 2px 2px !important; gap: 8px !important; }
   header > div > button span span { font-size: 12.5px !important; }
-  header nav { margin-left: 0 !important; flex-wrap: nowrap !important; justify-content: flex-start !important; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
-  header nav::-webkit-scrollbar { display: none; }
-  header nav [data-nav] { flex: 0 0 auto; padding: 8px 12px !important; font-size: 13px !important; }
-  header nav [data-nav]:last-child { margin-left: 2px !important; }
+  /* Wrap the nav onto two rows on small screens. It used to be a single
+     scrolling strip with the scrollbar hidden, which pushed Products and Join
+     off-screen with no way to know they were there. */
+  header nav { margin-left: 0 !important; flex-wrap: wrap !important; justify-content: center !important; overflow-x: visible !important; gap: 6px !important; width: 100%; }
+  header nav [data-nav] { flex: 0 0 auto; padding: 12px 14px !important; font-size: 13px !important; min-height: 44px; display: inline-flex; align-items: center; }
 
   /* sticky filter bars sit below the taller mobile header */
   [data-m="sticky-bar"] { top: var(--hdr-h, 88px) !important; }
