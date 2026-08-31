@@ -50,6 +50,9 @@ a:hover { color: var(--green-primary); }
 /* Project track. The design system is greens + brass only, so this blue is a
    deliberate exception scoped to this one pill. */
 [data-track="project"] > * > span { background: rgba(47,111,168,0.13) !important; color: #23557f !important; }
+/* Presidential Challenge keeps the outlined shape of the Competition pill so they
+   read as the same family, but royal purple instead of brass so they never blur together. */
+[data-track="presidential"] > * > span { border-color: #5b2d90 !important; color: #5b2d90 !important; }
 [data-nav] { position: relative; background: transparent; border: 0; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; letter-spacing: -0.01em; color: rgba(255,255,255,0.62); padding: 9px 16px; border-radius: 50px; transition: color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
 [data-nav]:hover { color: #fff; background: rgba(255,255,255,0.09); }
 [data-nav]:active { transform: scale(0.95); }
